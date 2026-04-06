@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>D&D Character Chronicle</title>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&family=Metamorphous&family=Rajdhani:wght@400;600;700&family=Uncial+Antiqua&family=Pinyon+Script&family=Berkshire+Swash&family=Inknut+Antiqua:wght@400;600;700;800;900&family=Numans&family=Philosopher:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;600;700&family=Cormorant+SC:wght@400;600;700&family=Fauna+One&family=UnifrakturMaguntia&family=UnifrakturCook:wght@700&family=Raleway:wght@400;600;700&family=Carattere&family=Satisfy&family=MedievalSharp&family=Viaoda+Libre&display=swap" rel="stylesheet">
+<style>
+:root {
+  --pg:#ffffff; --pg-mid:#f5f5f5; --pg-dark:#ebebeb; --pg-shadow:#d0d0d0;
+  --ink:#1a1a1a; --ink-mid:#555555; --ink-light:#999999;
+  --accent:#555555; --accent2:#888888; --accent-glow:rgba(0,0,0,0.1);
+  --border-color:rgba(0,0,0,0.15); --border-inner:rgba(0,0,0,0.08);
+  --body-bg1:#c8c8c8; --body-bg2:#c0c0c0; --body-bg3:#b8b8b8;
+  --page-tint:rgba(0,0,0,0); --corner-color:rgba(0,0,0,0.06);
+  --portrait-glow:rgba(0,0,0,0.1); --portrait-border:#cccccc; --portrait-radius:0px;
+  --font-display:'Cinzel Decorative',serif; --font-head:'Cinzel',serif; --font-body:'IM Fell English',serif;
+  --tab-active:#333333; --tt:0.55s ease;
+}
+.theme-fighter {
+  --pg:#d0d4d8; --pg-mid:#c0c4ca; --pg-dark:#b0b4bc; --pg-shadow:#9098a4;
+  --ink:#08090c; --ink-mid:#14161c; --ink-light:#242830;
+  --accent:#3a4a5c; --accent2:#607080; --accent-glow:rgba(58,74,92,0.5);
+  --border-color:rgba(10,14,20,0.75); --border-inner:rgba(10,14,20,0.45);
+  --body-bg1:#060608; --body-bg2:#0c0e12; --body-bg3:#040406;
+  --page-tint:rgba(40,50,70,0.1); --corner-color:rgba(8,10,16,0.6);
+  --portrait-glow:rgba(58,74,92,0.5); --portrait-border:#3a4a5c; --portrait-radius:0px;
+  --font-display:'Oswald',sans-serif; --font-head:'Oswald',sans-serif; --font-body:'Oswald',sans-serif; --tab-active:#3a4a5c;
+}
+.theme-barbarian {
+  --pg:#c0a882; --pg-mid:#b09878; --pg-dark:#a08868; --pg-shadow:#806848;
+  --ink:#100808; --ink-mid:#201010; --ink-light:#301808;
+  --accent:#8b2500; --accent2:#6b4010; --accent-glow:rgba(139,37,0,0.55);
+  --border-color:rgba(40,15,0,0.8); --border-inner:rgba(40,15,0,0.5);
+  --body-bg1:#0a0400; --body-bg2:#140800; --body-bg3:#060200;
+  --page-tint:rgba(60,20,0,0.18); --corner-color:rgba(30,8,0,0.6);
+  --portrait-glow:rgba(139,37,0,0.6); --portrait-border:#8b2500; --portrait-radius:0px;
+  --font-display:'Uncial Antiqua',cursive; --font-head:'Uncial Antiqua',cursive; --font-body:'Uncial Antiqua',cursive; --tab-active:#8b2500;
+}
+.theme-bard {
+  --pg:#f0e8d8; --pg-mid:#e8dcc8; --pg-dark:#ddd0b8; --pg-shadow:#c8b898;
+  --ink:#1a0a18; --ink-mid:#3a1a38; --ink-light:#5a3058;
+  --accent:#7a1a6a; --accent2:#8b6914; --accent-glow:rgba(122,26,106,0.35);
+  --border-color:rgba(80,20,70,0.4); --border-inner:rgba(80,20,70,0.25);
+  --body-bg1:#120810; --body-bg2:#1e1020; --body-bg3:#0a0608;
+  --page-tint:rgba(120,30,100,0.08); --corner-color:rgba(80,20,70,0.35);
+  --portrait-glow:rgba(122,26,106,0.4); --portrait-border:#7a1a6a; --portrait-radius:0px;
+  --font-display:'Berkshire Swash',cursive; --font-head:'Berkshire Swash',cursive; --font-body:'Berkshire Swash',cursive; --tab-active:#7a1a6a;
+}
+.theme-cleric {
+  --pg:#faf4e0; --pg-mid:#f5edd0; --pg-dark:#ece0b8; --pg-shadow:#d4c090;
+  --ink:#1a1000; --ink-mid:#3a2800; --ink-light:#5a4000;
+  --accent:#8b6914; --accent2:#8b1a1a; --accent-glow:rgba(139,105,20,0.4);
+  --border-color:rgba(100,75,10,0.6); --border-inner:rgba(100,75,10,0.35);
+  --body-bg1:#100e00; --body-bg2:#201c04; --body-bg3:#080600;
+  --page-tint:rgba(200,160,40,0.18); --corner-color:rgba(120,90,10,0.4);
+  --portrait-glow:rgba(200,160,40,0.5); --portrait-border:#8b6914;
+  --portrait-radius:50%; --font-display:'Cinzel Decorative',serif; --font-head:'Cinzel',serif; --font-body:'Cinzel',serif; --tab-active:#8b6914;
+}
+.theme-druid {
+  --pg:#e8eed8; --pg-mid:#dce8c8; --pg-dark:#ccdab8; --pg-shadow:#aac098;
+  --ink:#0a1a08; --ink-mid:#1a3010; --ink-light:#2a4820;
+  --accent:#2a6020; --accent2:#6b7814; --accent-glow:rgba(42,96,32,0.35);
+  --border-color:rgba(30,60,20,0.5); --border-inner:rgba(30,60,20,0.3);
+  --body-bg1:#060e04; --body-bg2:#0c1808; --body-bg3:#040a02;
+  --page-tint:rgba(40,80,20,0.1); --corner-color:rgba(20,50,10,0.4);
+  --portrait-glow:rgba(42,96,32,0.45); --portrait-border:#2a6020; --portrait-radius:0px;
+  --font-display:'Philosopher',serif; --font-head:'Philosopher',serif; --font-body:'Philosopher',serif; --tab-active:#2a6020;
+}
+.theme-monk {
+  --pg:#ece8e0; --pg-mid:#e0dcd4; --pg-dark:#d4d0c8; --pg-shadow:#b8b4ac;
+  --ink:#101010; --ink-mid:#282828; --ink-light:#484848;
+  --accent:#4a3020; --accent2:#8a7040; --accent-glow:rgba(74,48,32,0.3);
+  --border-color:rgba(30,20,10,0.5); --border-inner:rgba(30,20,10,0.28);
+  --body-bg1:#080604; --body-bg2:#100e08; --body-bg3:#040402;
+  --page-tint:rgba(80,60,20,0.06); --corner-color:rgba(20,15,5,0.4);
+  --portrait-glow:rgba(74,48,32,0.35); --portrait-border:#4a3020; --portrait-radius:0px;
+  --font-display:'Numans',sans-serif; --font-head:'Numans',sans-serif; --font-body:'Numans',sans-serif; --tab-active:#4a3020;
+}
+.theme-paladin {
+  --pg:#f4f0e0; --pg-mid:#ece8d4; --pg-dark:#e0dac4; --pg-shadow:#c8c0a0;
+  --ink:#100e08; --ink-mid:#28240c; --ink-light:#484010;
+  --accent:#8b6914; --accent2:#1a3a8b; --accent-glow:rgba(139,105,20,0.45);
+  --border-color:rgba(26,58,139,0.4); --border-inner:rgba(26,58,139,0.22);
+  --body-bg1:#080800; --body-bg2:#101008; --body-bg3:#040400;
+  --page-tint:rgba(200,180,40,0.1); --corner-color:rgba(26,58,139,0.3);
+  --portrait-glow:rgba(139,105,20,0.5); --portrait-border:#8b6914; --portrait-radius:0px;
+  --font-display:'MedievalSharp',serif; --font-head:'MedievalSharp',serif; --font-body:'MedievalSharp',serif; --tab-active:#8b6914;
+}
+.theme-ranger {
+  --pg:#e4ecdc; --pg-mid:#d8e4d0; --pg-dark:#ccdac4; --pg-shadow:#a8c0a0;
+  --ink:#081408; --ink-mid:#142814; --ink-light:#243a20;
+  --accent:#3a5a20; --accent2:#6a5a14; --accent-glow:rgba(58,90,32,0.35);
+  --border-color:rgba(30,50,15,0.5); --border-inner:rgba(30,50,15,0.28);
+  --body-bg1:#040a02; --body-bg2:#081404; --body-bg3:#020602;
+  --page-tint:rgba(50,80,20,0.1); --corner-color:rgba(20,40,10,0.4);
+  --portrait-glow:rgba(58,90,32,0.4); --portrait-border:#3a5a20; --portrait-radius:0px;
+  --font-display:'Fauna One',serif; --font-head:'Fauna One',serif; --font-body:'Fauna One',serif; --tab-active:#3a5a20;
+}
+.theme-rogue {
+  --pg:#d8d4cc; --pg-mid:#c8c4bc; --pg-dark:#b8b4ac; --pg-shadow:#908c84;
+  --ink:#080808; --ink-mid:#181818; --ink-light:#303030;
+  --accent:#1a6b1a; --accent2:#4a4a4a; --accent-glow:rgba(26,107,26,0.3);
+  --border-color:rgba(20,20,20,0.7); --border-inner:rgba(20,20,20,0.4);
+  --body-bg1:#040404; --body-bg2:#0c0c0c; --body-bg3:#020202;
+  --page-tint:rgba(20,40,20,0.1); --corner-color:rgba(0,0,0,0.5);
+  --portrait-glow:rgba(0,0,0,0.6); --portrait-border:#1a6b1a; --portrait-radius:0px;
+  --font-display:'Satisfy',cursive; --font-head:'Satisfy',cursive; --font-body:'Satisfy',cursive; --tab-active:#1a6b1a;
+}
+.theme-sorcerer {
+  --pg:#ede8f8; --pg-mid:#e4ddf4; --pg-dark:#d8d0ec; --pg-shadow:#b8b0d8;
+  --ink:#0c0820; --ink-mid:#1c1440; --ink-light:#302860;
+  --accent:#8020c0; --accent2:#c07820; --accent-glow:rgba(128,32,192,0.4);
+  --border-color:rgba(100,40,180,0.45); --border-inner:rgba(100,40,180,0.25);
+  --body-bg1:#080410; --body-bg2:#100820; --body-bg3:#040208;
+  --page-tint:rgba(120,40,200,0.08); --corner-color:rgba(80,20,150,0.4);
+  --portrait-glow:rgba(128,32,192,0.5); --portrait-border:#8020c0; --portrait-radius:0px;
+  --font-display:'Viaoda Libre',serif; --font-head:'Viaoda Libre',serif; --font-body:'Viaoda Libre',serif; --tab-active:#8020c0;
+}
+.theme-warlock {
+  --pg:#f0eeee; --pg-mid:#e8e6e8; --pg-dark:#dcdae0; --pg-shadow:#c0bcc8;
+  --ink:#05040e; --ink-mid:#0e0c20; --ink-light:#1c1a38;
+  --accent:#1a4a62; --accent2:#28245a; --accent-glow:rgba(26,74,98,0.35);
+  --border-color:rgba(26,74,98,0.6); --border-inner:rgba(40,36,90,0.4);
+  --body-bg1:#0e0e14; --body-bg2:#14121e; --body-bg3:#0a0a10;
+  --page-tint:rgba(58,110,138,0.06); --corner-color:rgba(58,110,138,0.2);
+  --portrait-glow:rgba(58,110,138,0.4); --portrait-border:#3a6e8a; --portrait-radius:0px;
+  --font-display:'Inknut Antiqua',serif; --font-head:'Inknut Antiqua',serif; --font-body:'Inknut Antiqua',serif; --tab-active:#1a4a62;
+}
+.theme-wizard {
+  --pg:#e8e4f0; --pg-mid:#dcd6ec; --pg-dark:#cdc5e0; --pg-shadow:#a89cc8;
+  --ink:#0a0818; --ink-mid:#1e1640; --ink-light:#3a2870;
+  --accent:#4a1a8b; --accent2:#8b7a14; --accent-glow:rgba(74,26,139,0.35);
+  --border-color:rgba(50,30,120,0.55); --border-inner:rgba(50,30,120,0.3);
+  --body-bg1:#08060f; --body-bg2:#120e20; --body-bg3:#04030a;
+  --page-tint:rgba(80,50,160,0.1); --corner-color:rgba(40,20,100,0.4);
+  --portrait-glow:rgba(74,26,139,0.5); --portrait-border:#4a1a8b;
+  --portrait-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  --font-display:'Metamorphous',serif; --font-head:'Metamorphous',serif; --font-body:'Metamorphous',serif; --tab-active:#4a1a8b;
+}
+.theme-artificer {
+  --pg:#dce4e8; --pg-mid:#ccd8de; --pg-dark:#bcccd4; --pg-shadow:#9ab0bc;
+  --ink:#04080c; --ink-mid:#0a1820; --ink-light:#102030;
+  --accent:#0e3d66; --accent2:#6b4a0a; --accent-glow:rgba(14,61,102,0.4);
+  --border-color:rgba(14,61,102,0.65); --border-inner:rgba(14,61,102,0.38);
+  --body-bg1:#040810; --body-bg2:#08101c; --body-bg3:#020408;
+  --page-tint:rgba(20,80,140,0.08); --corner-color:rgba(10,40,80,0.4);
+  --portrait-glow:rgba(14,61,102,0.5); --portrait-border:#0e3d66; --portrait-radius:0px;
+  --font-display:'Rajdhani',sans-serif; --font-head:'Rajdhani',sans-serif; --font-body:'Rajdhani',sans-serif; --tab-active:#0e3d66;
+}
+.align-lawful { --border-inner:rgba(90,55,20,0.5); }
+.align-chaotic .rule-gem { transform:rotate(30deg) skew(5deg); }
+.align-evil    { filter:saturate(0.88) brightness(0.96); }
+.align-good    { filter:saturate(1.05) brightness(1.02); }
+
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+body {
+  background:var(--body-bg1);
+  background-image:radial-gradient(ellipse at 25% 25%,var(--body-bg2) 0%,transparent 55%),
+                   radial-gradient(ellipse at 75% 75%,var(--body-bg3) 0%,transparent 55%);
+  min-height:100vh; font-family:var(--font-body); color:var(--ink);
+  padding:12px; display:flex; justify-content:center; align-items:flex-start;
+  transition:background var(--tt);
+}
+.page {
+  width:100%; max-width:1100px;
+  background-color:var(--pg);
+  border-radius:3px; padding:18px 18px 20px; position:relative;
+  box-shadow:0 2px 20px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.08);
+  transition:background var(--tt),box-shadow var(--tt);
+  animation:pageLoad 0.4s ease-out both;
+}
+@keyframes pageLoad { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+.page::before {
+  content:''; position:absolute; inset:0; pointer-events:none; border-radius:3px;
+  transition:background var(--tt);
+}
+.page::after {
+  content:''; position:absolute; inset:8px; pointer-events:none;
+  border-radius:2px; transition:border-color var(--tt);
+}
+.theme-fighter .page::after { border:3px solid rgba(20,5,0,0.5); box-shadow:inset 0 0 0 1px rgba(155,0,0,0.2); }
+.theme-rogue   .page::after { border:1px dashed rgba(20,20,20,0.3); }
+.theme-wizard  .page::after { box-shadow:inset 0 0 0 4px rgba(50,30,120,0.15); }
+.theme-cleric  .page::after { box-shadow:inset 0 0 20px rgba(200,160,40,0.12); border:1px solid rgba(139,105,20,0.4); }
+
+.rule { display:flex; align-items:center; gap:8px; margin:6px 0; }
+.rule-line { flex:1; height:1.5px; background:linear-gradient(to right,transparent,var(--accent2),var(--ink-light),var(--accent2),transparent); }
+.rule-gem { width:7px; height:7px; background:var(--accent); transform:rotate(45deg); flex-shrink:0; transition:background var(--tt); }
+.theme-fighter .rule-gem { width:9px; height:9px; }
+.theme-wizard  .rule-gem { border-radius:50%; transform:none; width:8px; height:8px; }
+.theme-rogue   .rule-gem { width:5px; height:5px; }
+.theme-cleric  .rule-gem { border-radius:0; box-shadow:0 -4px 0 2px var(--accent),0 4px 0 2px var(--accent); width:5px; height:12px; transform:none; }
+
+.panel { border:1.5px solid var(--border-color); background:rgba(0,0,0,0.02); position:relative; padding:10px 9px 8px; transition:border-color var(--tt); }
+.theme-fighter .panel { border-color:rgba(20,5,0,0.75); border-width:2px; }
+.theme-rogue   .panel { background:rgba(0,0,0,0.04); }
+.theme-cleric  .panel { background:rgba(200,160,40,0.03); }
+.panel-title {
+  position:absolute; top:-8px; left:50%; transform:translateX(-50%);
+  background:var(--pg); padding:0 8px;
+  font-family:var(--font-head); font-size:7px; font-weight:600;
+  letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-light); white-space:nowrap;
+  transition:background var(--tt),color var(--tt);
+}
+
+.sec-head { font-family:var(--font-head); font-size:9px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--ink-light); text-align:center; margin-bottom:8px; }
+.sec-head::before,.sec-head::after { content:'✦'; font-size:6px; margin:0 5px; color:var(--accent2); }
+.theme-fighter .sec-head::before,.theme-fighter .sec-head::after { content:'—'; }
+.theme-wizard  .sec-head::before,.theme-wizard  .sec-head::after { content:'✶'; }
+.theme-rogue   .sec-head::before,.theme-rogue   .sec-head::after { content:'·'; font-size:12px; }
+.theme-cleric  .sec-head::before,.theme-cleric  .sec-head::after { content:''; }
+
+.field { display:flex; flex-direction:column; align-items:center; }
+.field input { background:transparent; border:none; border-bottom:1px solid var(--border-color); font-family:var(--font-body); font-size:16px; color:var(--ink); width:100%; padding:2px 3px; outline:none; text-align:center; overflow:hidden; }
+.field input:focus { border-bottom-color:var(--accent); background:color-mix(in srgb,var(--accent) 4%,transparent); }
+.field-lbl { font-family:var(--font-head); font-size:6.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--ink-light); margin-top:2px; text-align:center; }
+
+input[type=text],input[type=number] { background:transparent; border:none; border-bottom:1px solid var(--border-color); font-family:var(--font-body); font-size:16px; color:var(--ink); padding:2px 3px; outline:none; overflow:hidden; }
+input[type=text]:focus,input[type=number]:focus { border-bottom-color:var(--accent); }
+textarea { background:rgba(0,0,0,0.02); border:1px solid var(--border-color); font-family:var(--font-body); font-size:14px; color:var(--ink); padding:6px; outline:none; resize:vertical; line-height:1.6; width:100%; }
+textarea:focus { border-color:var(--accent); }
+
+.pip { width:13px; height:13px; border:1.5px solid var(--ink-light); border-radius:50%; flex-shrink:0; cursor:pointer; background:transparent; transition:all .12s; position:relative; }
+.pip.prof { background:var(--ink); border-color:var(--ink); }
+.pip.prof::after { content:''; position:absolute; inset:2.5px; background:var(--pg); border-radius:50%; }
+.pip.expert { background:var(--accent); border-color:var(--accent); }
+.pip.expert::after { content:''; position:absolute; inset:2.5px; background:var(--pg); border-radius:50%; }
+.pip.half { background:linear-gradient(to right,var(--ink) 50%,transparent 50%); border-color:var(--ink); }
+
+.check-row { display:flex; align-items:center; gap:6px; padding:3px 4px; border-radius:2px; transition:background .1s; }
+.check-row:hover { background:color-mix(in srgb,var(--accent) 8%,transparent); }
+.check-bonus { font-family:var(--font-head); font-size:11px; font-weight:600; width:26px; text-align:right; color:var(--ink-mid); flex-shrink:0; }
+.check-name  { font-family:var(--font-body); font-size:13px; flex:1; }
+.check-abbr  { font-family:var(--font-head); font-size:8px; color:var(--ink-light); opacity:.75; }
+
+input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;}
+input[type=number]{-moz-appearance:textfield;}
+
+.header { text-align:center; margin-bottom:8px; }
+.header h1 { font-family:var(--font-display); font-size:26px; font-weight:700; color:var(--accent); letter-spacing:3px; text-shadow:1px 1px 0 rgba(0,0,0,0.18),0 0 28px var(--accent-glow); line-height:1; transition:color var(--tt),text-shadow var(--tt); }
+.header .sub { font-family:var(--font-head); font-size:9px; letter-spacing:5px; text-transform:uppercase; color:var(--ink-light); margin-top:3px; }
+.class-badge { display:inline-block; margin-top:4px; font-family:var(--font-head); font-size:7px; letter-spacing:3px; text-transform:uppercase; color:var(--pg); background:var(--accent); padding:2px 10px; opacity:0; transform:translateY(-4px); transition:opacity .4s,transform .4s,background var(--tt); }
+.class-badge.visible { opacity:1; transform:none; }
+
+/* TAB BAR — always visible */
+.tab-bar { display:grid; grid-template-columns:repeat(5,1fr); border-bottom:2px solid var(--border-color); margin:8px -18px 14px; transition:border-color var(--tt); }
+.tab-btn { font-family:var(--font-head); font-size:9px; font-weight:600; letter-spacing:1px; text-transform:uppercase; color:var(--ink-light); padding:9px 4px 7px; cursor:pointer; text-align:center; border-bottom:2.5px solid transparent; margin-bottom:-2px; transition:color .15s,border-color .15s; user-select:none; }
+.tab-btn.active { color:var(--tab-active); border-bottom-color:var(--tab-active); }
+.tab-btn:hover:not(.active) { color:var(--ink); }
+.tab-section { display:none; padding-top:4px; }
+.tab-section.active { display:block; }
+
+/* Identity strip */
+.identity-strip { display:grid; grid-template-columns:2.2fr 1fr 0.6fr 1fr 1fr 1fr 1fr; gap:0 14px; margin:4px 0 0; }
+.identity-strip .char-name input { font-family:var(--font-head); font-size:18px; font-weight:600; border-bottom:2px solid var(--border-color); text-align:left; padding-left:0; width:100%; }
+
+/* Two-col layout used inside tabs on wide screens */
+.tab-cols { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.tab-col  { display:flex; flex-direction:column; gap:10px; }
+
+/* Ability grid: 3-col mobile, 6-col desktop */
+.ability-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:12px; }
+
+.ability-box { background:var(--pg-mid); background-image:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,transparent 60%); border:1.5px solid var(--ink-light); padding:6px 4px 5px; text-align:center; box-shadow:inset 0 1px 3px rgba(0,0,0,0.08),0 1px 4px rgba(0,0,0,0.12); transition:background var(--tt),border-color var(--tt); }
+.theme-fighter .ability-box { border-width:2px; border-color:#9b0000; box-shadow:inset 0 0 0 1px rgba(0,0,0,0.2),2px 2px 0 rgba(0,0,0,0.35); }
+.theme-wizard  .ability-box { border-radius:50%; border-color:var(--accent); box-shadow:0 0 8px var(--accent-glow),inset 0 0 8px rgba(80,50,160,0.1); }
+.theme-cleric  .ability-box { border-color:var(--accent); border-width:2px; box-shadow:0 0 6px var(--accent-glow); }
+
+.ab-name  { font-family:var(--font-head); font-size:7px; font-weight:600; letter-spacing:2px; color:var(--accent); text-transform:uppercase; display:block; margin-bottom:2px; }
+.ab-score { font-family:var(--font-head); font-size:26px; font-weight:700; color:var(--ink); width:100%; text-align:center; background:transparent; border:none; border-bottom:1px solid var(--border-color); outline:none; line-height:1; padding:0; }
+.ab-score:focus { border-bottom-color:var(--accent); }
+.ab-mod   { font-family:var(--font-head); font-size:13px; font-weight:600; color:var(--ink-mid); margin-top:2px; min-height:18px; display:flex; align-items:center; justify-content:center; }
+.save-row { display:flex; align-items:center; gap:4px; padding:3px 2px 0; border-top:1px solid var(--border-inner); margin-top:3px; }
+.save-label { font-family:var(--font-head); font-size:6px; letter-spacing:1px; text-transform:uppercase; color:var(--ink-light); flex:1; }
+.save-bonus { font-family:var(--font-head); font-size:8px; font-weight:600; color:var(--ink-mid); width:20px; text-align:right; }
+
+.combat-stats { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-bottom:10px; }
+.c-stat { border:1.5px solid var(--ink-light); background:var(--pg-mid); text-align:center; padding:6px 4px 4px; box-shadow:inset 0 1px 3px rgba(0,0,0,0.07); }
+.theme-fighter .c-stat { border-color:rgba(20,5,0,0.75); border-width:2px; }
+.c-stat input { font-family:var(--font-head); font-size:20px; font-weight:700; width:100%; text-align:center; background:transparent; border:none; border-bottom:1px solid var(--border-color); outline:none; padding:0; }
+.c-stat input:focus { border-bottom-color:var(--accent); }
+.c-stat .lbl { font-family:var(--font-head); font-size:6.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--ink-light); display:block; margin-top:2px; }
+
+.hp-panel { border:1.5px solid var(--accent); background:linear-gradient(135deg,var(--pg-mid),color-mix(in srgb,var(--accent) 6%,transparent)); display:grid; grid-template-columns:1fr 1px 1fr 1px 1fr; position:relative; margin-bottom:10px; transition:border-color var(--tt); }
+.hp-panel-title { position:absolute; top:-8px; left:50%; transform:translateX(-50%); background:var(--pg); padding:0 8px; font-family:var(--font-head); font-size:7px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--accent); white-space:nowrap; }
+.hp-cell { text-align:center; padding:6px 4px 4px; }
+.hp-divider { background:var(--border-color); }
+.hp-cell input { font-family:var(--font-head); font-weight:700; width:100%; text-align:center; background:transparent; border:none; border-bottom:1px solid var(--border-color); outline:none; padding:0; }
+.hp-current input { font-size:22px; color:var(--accent); }
+.hp-max input,.hp-temp input { font-size:16px; }
+.hp-cell input:focus { border-bottom-color:var(--accent); }
+.hp-cell .lbl { font-family:var(--font-head); font-size:6px; letter-spacing:1.5px; text-transform:uppercase; color:var(--ink-light); display:block; margin-top:2px; }
+
+.hd-death-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
+.hd-box { border:1.5px solid var(--ink-light); background:var(--pg-mid); text-align:center; padding:6px 4px 4px; }
+.hd-box input { font-family:var(--font-head); font-size:17px; font-weight:600; width:100%; text-align:center; background:transparent; border:none; border-bottom:1px solid var(--border-color); outline:none; }
+.hd-box input:focus { border-bottom-color:var(--accent); }
+.hd-box .lbl { font-family:var(--font-head); font-size:6px; letter-spacing:1.5px; text-transform:uppercase; color:var(--ink-light); display:block; margin-top:2px; }
+.death-box { border:1.5px solid var(--accent); padding:6px 8px; background:linear-gradient(135deg,var(--pg-mid),color-mix(in srgb,var(--accent) 5%,transparent)); }
+.death-head { font-family:var(--font-head); font-size:6.5px; letter-spacing:1.5px; text-transform:uppercase; color:var(--accent); text-align:center; margin-bottom:5px; }
+.death-row-inner { display:flex; align-items:center; gap:5px; margin-bottom:3px; }
+.death-lbl { font-family:var(--font-head); font-size:6.5px; color:var(--ink-light); width:38px; }
+.death-pips { display:flex; gap:4px; }
+.dpip { width:13px; height:13px; border-radius:50%; cursor:pointer; border:1.5px solid var(--ink-light); background:transparent; transition:all .12s; }
+.dpip.s-filled { background:var(--accent2); border-color:var(--accent2); }
+.dpip.f-filled { background:var(--accent); border-color:var(--accent); }
+
+.atk-table { width:100%; border-collapse:collapse; }
+.atk-table th { font-family:var(--font-head); font-size:6.5px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-light); border-bottom:1.5px solid var(--border-color); padding:3px 5px; text-align:left; }
+.atk-table td { border-bottom:1px solid var(--border-inner); padding:3px 5px; }
+.atk-table td input { font-size:13px; text-align:left; width:100%; background:transparent; color:var(--ink); font-family:var(--font-body); outline:none; border:none; padding:0; }
+.atk-table tr:hover td { background:color-mix(in srgb,var(--accent) 5%,transparent); }
+
+.currency-row { display:grid; grid-template-columns:repeat(5,1fr); gap:5px; margin-top:6px; }
+.coin { text-align:center; }
+.coin input { font-size:12px; text-align:center; width:100%; }
+.coin-sym { font-family:var(--font-head); font-size:7.5px; font-weight:700; color:var(--accent2); display:block; margin-top:1px; }
+
+.portrait-wrap { display:flex; flex-direction:column; align-items:center; }
+.portrait-frame {
+  width:100%; max-width:320px; aspect-ratio:3/4;
+  background:var(--pg-dark);
+  background-image:radial-gradient(ellipse at center,var(--pg-mid) 0%,var(--pg-shadow) 100%);
+  border:2px solid var(--portrait-border);
+  border-radius:var(--portrait-radius);
+  box-shadow:inset 0 0 18px var(--portrait-glow),0 2px 10px rgba(0,0,0,0.25),0 0 0 4px var(--pg),0 0 0 6px var(--portrait-border);
+  display:flex; align-items:center; justify-content:center;
+  position:relative; overflow:hidden;
+  transition:border-color var(--tt),border-radius var(--tt),box-shadow var(--tt),clip-path var(--tt);
+}
+.portrait-frame::before { content:''; position:absolute; inset:0; pointer-events:none; z-index:1; }
+.portrait-frame::after  { content:''; position:absolute; inset:0; pointer-events:none; z-index:2; }
+
+/* ── FIGHTER — slashed diagonal cuts, raw and brutal ── */
+.theme-fighter .portrait-frame {
+  border:none;
+  border-radius:0;
+  box-shadow:0 4px 20px rgba(0,0,0,0.5);
+  overflow:visible;
+}
+.theme-fighter .portrait-frame::before { background:none; }
+.theme-fighter .portrait-frame::after  { border:none; }
+.theme-fighter .fighter-frame-svg      { display:block !important; }
+
+/* ── BARBARIAN — rough hewn, asymmetric clip ── */
+.theme-barbarian .portrait-frame {
+  border:3px solid #8b2500;
+  border-radius:0;
+  clip-path:polygon(0% 3%, 2% 0%, 98% 0%, 100% 3%, 100% 97%, 97% 100%, 3% 100%, 0% 97%);
+  box-shadow:inset 0 0 25px rgba(139,37,0,0.3), 0 4px 20px rgba(0,0,0,0.5);
+}
+.theme-barbarian .portrait-frame::before {
+  background:linear-gradient(160deg,rgba(139,37,0,0.15) 0%,transparent 50%,rgba(0,0,0,0.2) 100%);
+}
+
+/* ── BARD — elegant oval with double ring ── */
+.theme-bard .portrait-frame {
+  border:2px solid #7a1a6a;
+  border-radius:50% 50% 48% 48% / 40% 40% 60% 60%;
+  box-shadow:inset 0 0 20px rgba(122,26,106,0.25),
+             0 0 0 6px var(--pg), 0 0 0 8px #7a1a6a, 0 0 0 12px var(--pg), 0 0 0 14px rgba(122,26,106,0.4),
+             0 6px 30px rgba(122,26,106,0.3);
+}
+.theme-bard .portrait-frame::before {
+  background:radial-gradient(ellipse at 50% 0%,rgba(122,26,106,0.15) 0%,transparent 60%);
+  border-radius:inherit;
+}
+
+/* ── CLERIC — arched top, divine gold halo ── */
+.theme-cleric .portrait-frame {
+  border:2px solid #8b6914;
+  border-radius:50% 50% 0 0 / 30% 30% 0 0;
+  box-shadow:inset 0 0 30px rgba(200,160,40,0.2), 0 -8px 30px rgba(200,160,40,0.3),
+             0 0 0 4px var(--pg), 0 0 0 6px #8b6914,
+             0 4px 20px rgba(0,0,0,0.3);
+}
+.theme-cleric .portrait-frame::before {
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,220,80,0.25) 0%,transparent 55%);
+}
+.theme-cleric .portrait-frame::after {
+  border-radius:inherit; border:1px solid rgba(139,105,20,0.3); inset:5px;
+}
+
+/* ── DRUID — organic, uneven natural border ── */
+.theme-druid .portrait-frame {
+  border:2px solid #2a6020;
+  border-radius:62% 38% 55% 45% / 45% 52% 48% 55%;
+  box-shadow:inset 0 0 20px rgba(42,96,32,0.2),
+             0 0 0 4px var(--pg), 0 0 0 6px #2a6020,
+             0 4px 20px rgba(42,96,32,0.25);
+}
+.theme-druid .portrait-frame::before {
+  background:radial-gradient(ellipse at 30% 70%,rgba(42,96,32,0.15) 0%,transparent 60%);
+  border-radius:inherit;
+}
+
+/* ── MONK — ultra minimal, thin single line, inner circle ── */
+.theme-monk .portrait-frame {
+  border:none;
+  border-radius:0;
+  box-shadow:0 2px 10px rgba(0,0,0,0.2);
+  overflow:visible;
+}
+.theme-monk .portrait-frame::before { border:none; inset:0; }
+.theme-monk .monk-frame-svg          { display:block !important; }
+
+/* ── PALADIN — shield shape ── */
+.theme-paladin .portrait-frame {
+  border:3px solid #8b6914;
+  border-radius:4px 4px 0 0;
+  clip-path:polygon(0% 0%, 100% 0%, 100% 72%, 50% 100%, 0% 72%);
+  box-shadow:inset 0 0 25px rgba(139,105,20,0.2),
+             0 4px 20px rgba(0,0,0,0.4);
+}
+.theme-paladin .portrait-frame::before {
+  background:linear-gradient(180deg,rgba(139,105,20,0.12) 0%,transparent 60%);
+}
+.theme-paladin .portrait-frame::after {
+  clip-path:polygon(5% 5%, 95% 5%, 95% 70%, 50% 96%, 5% 70%);
+  border:1px solid rgba(139,105,20,0.35); inset:0;
+}
+
+/* ── RANGER — hexagon ── */
+.theme-ranger .portrait-frame {
+  border:2px solid #3a5a20;
+  border-radius:0;
+  clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  box-shadow:inset 0 0 20px rgba(58,90,32,0.2), 0 4px 20px rgba(0,0,0,0.35);
+}
+.theme-ranger .portrait-frame::before {
+  background:radial-gradient(ellipse at 50% 20%,rgba(58,90,32,0.15) 0%,transparent 60%);
+}
+
+/* ── ROGUE — angled corner cuts, dark vignette ── */
+.theme-rogue .portrait-frame {
+  border:2px solid #1a6b1a;
+  border-radius:0;
+  clip-path:polygon(12px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 12px);
+  box-shadow:inset 0 0 40px rgba(0,0,0,0.5), 0 4px 20px rgba(0,0,0,0.5);
+}
+.theme-rogue .portrait-frame::before {
+  background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,0.45) 100%);
+}
+
+/* ── SORCERER — rotated diamond outer ring ── */
+.theme-sorcerer .portrait-frame {
+  border:2px solid #8020c0;
+  border-radius:0;
+  box-shadow:inset 0 0 20px rgba(128,32,192,0.2),
+             0 0 0 4px var(--pg), 0 0 0 6px #8020c0,
+             0 0 25px rgba(128,32,192,0.35);
+}
+.theme-sorcerer .portrait-frame::before {
+  background:radial-gradient(ellipse at 50% 30%,rgba(128,32,192,0.12) 0%,transparent 65%);
+}
+.theme-sorcerer .portrait-frame::after {
+  inset:-14px; border:2px solid rgba(128,32,192,0.4);
+  transform:rotate(45deg) scale(0.72);
+  border-radius:4px;
+}
+
+/* ── WARLOCK — inverted arch (pointed bottom), eldritch glow ── */
+.theme-warlock .portrait-frame {
+  border:2px solid #3a6e8a;
+  border-radius:50% 50% 4px 4px / 20% 20% 4px 4px;
+  box-shadow:inset 0 0 30px rgba(58,110,138,0.15),
+             0 0 0 4px var(--pg), 0 0 0 6px #3a6e8a,
+             0 0 0 8px var(--pg), 0 0 0 10px rgba(122,110,154,0.4),
+             0 0 25px rgba(58,110,138,0.25);
+}
+.theme-warlock .portrait-frame::before {
+  background:radial-gradient(ellipse at 50% 0%,rgba(58,110,138,0.12) 0%,transparent 55%),
+             radial-gradient(ellipse at 50% 100%,rgba(122,110,154,0.1) 0%,transparent 45%);
+  border-radius:inherit;
+}
+/* Warlock — comprehensive contrast fix: hardcode dark color on every light element */
+.theme-warlock input[type=text],
+.theme-warlock input[type=number],
+.theme-warlock .field input,
+.theme-warlock .ab-score,
+.theme-warlock .c-stat input,
+.theme-warlock .hp-cell input,
+.theme-warlock .hd-box input,
+.theme-warlock .stat-mini input,
+.theme-warlock .passive-row input,
+.theme-warlock .atk-table td input { color:#05040e !important; border-bottom-color:rgba(26,74,98,0.7) !important; }
+.theme-warlock textarea { color:#05040e !important; border-color:rgba(26,74,98,0.5) !important; }
+.theme-warlock select { color:#05040e !important; }
+.theme-warlock input::placeholder,
+.theme-warlock textarea::placeholder { color:#1c1a38 !important; opacity:1 !important; }
+.theme-warlock .field-lbl,
+.theme-warlock .panel-title,
+.theme-warlock .sec-head,
+.theme-warlock .header .sub,
+.theme-warlock .ab-name,
+.theme-warlock .ab-mod,
+.theme-warlock .save-label,
+.theme-warlock .save-bonus,
+.theme-warlock .check-bonus,
+.theme-warlock .check-name,
+.theme-warlock .check-abbr,
+.theme-warlock .c-stat .lbl,
+.theme-warlock .hp-cell .lbl,
+.theme-warlock .hp-panel-title,
+.theme-warlock .hd-box .lbl,
+.theme-warlock .death-head,
+.theme-warlock .death-lbl,
+.theme-warlock .coin-sym,
+.theme-warlock .portrait-lbl,
+.theme-warlock .stat-mini .lbl,
+.theme-warlock .passive-lbl,
+.theme-warlock .cond-name,
+.theme-warlock .spell-lvl-num,
+.theme-warlock .inspiration-lbl,
+.theme-warlock .inspiration-state,
+.theme-warlock .atk-table th,
+.theme-warlock .portrait-placeholder p { color:#1c1a38 !important; opacity:1 !important; }
+.theme-warlock .tab-btn { color:#05040e !important; opacity:1 !important; }
+.theme-warlock .tab-btn.active { color:#1a4a62 !important; }
+.theme-warlock .header .sub { color:#1c1a38 !important; }
+.theme-warlock .sec-head { color:#05040e !important; }
+.theme-warlock .sec-head::before,
+.theme-warlock .sec-head::after { color:#1a4a62 !important; }
+.theme-warlock .rule-gem { background:#1a4a62 !important; }
+.theme-warlock .class-badge { color:#f0eeee !important; }
+
+/* ── WIZARD — ellipse (existing, refined) ── */
+.theme-wizard .portrait-frame {
+  border:2px solid #4a1a8b;
+  border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+  box-shadow:inset 0 0 20px rgba(74,26,139,0.3),
+             0 0 0 4px var(--pg), 0 0 0 6px #4a1a8b,
+             0 0 20px rgba(74,26,139,0.4);
+}
+.theme-wizard .portrait-frame::before {
+  background:radial-gradient(circle at 20% 30%,rgba(255,255,255,0.15) 1px,transparent 1px),
+             radial-gradient(circle at 70% 20%,rgba(255,255,255,0.1) 1px,transparent 1px),
+             radial-gradient(circle at 50% 70%,rgba(255,255,255,0.12) 1px,transparent 1px);
+  border-radius:inherit;
+}
+
+/* ── ARTIFICER — mechanical rounded rect, notched corners ── */
+.theme-artificer .portrait-frame {
+  border:none;
+  border-radius:12px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.35);
+  overflow:visible;
+}
+.theme-artificer .portrait-frame::before { background:none; }
+.theme-artificer .portrait-frame::after  { border:none; }
+.theme-artificer .artificer-frame-svg    { display:block !important; }
+.theme-barbarian .barbarian-frame-svg    { display:block !important; }
+.theme-barbarian .portrait-frame {
+  border:none;
+  border-radius:0;
+  box-shadow:0 4px 20px rgba(0,0,0,0.35);
+  overflow:visible;
+}
+.theme-barbarian .portrait-frame::before { background:none; }
+.theme-barbarian .portrait-frame::after  { border:none; }
+
+/* ── Corner brackets — hide for rounded/clipped themes ── */
+.portrait-placeholder { text-align:center; padding:14px; opacity:.5; position:relative; z-index:3; }
+.portrait-placeholder p { font-style:italic; font-size:10px; color:var(--ink-mid); line-height:1.6; }
+.portrait-corner { position:absolute; width:12px; height:12px; border-color:var(--accent2); border-style:solid; z-index:4; }
+.portrait-corner.tl{top:-1px;left:-1px;border-width:2px 0 0 2px;}
+.portrait-corner.tr{top:-1px;right:-1px;border-width:2px 2px 0 0;}
+.portrait-corner.bl{bottom:-1px;left:-1px;border-width:0 0 2px 2px;}
+.portrait-corner.br{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
+/* Hide brackets on non-rectangular frames */
+.theme-wizard .portrait-corner,
+.theme-cleric .portrait-corner,
+.theme-bard .portrait-corner,
+.theme-druid .portrait-corner,
+.theme-paladin .portrait-corner,
+.theme-ranger .portrait-corner,
+.theme-warlock .portrait-corner,
+.theme-sorcerer .portrait-corner { display:none; }
+.portrait-lbl { font-family:var(--font-head); font-size:7px; letter-spacing:2px; text-transform:uppercase; color:var(--ink-light); margin-top:5px; }
+
+.skills-list { display:flex; flex-direction:column; gap:1px; }
+.insp-prof-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px; }
+.stat-mini { border:1.5px solid var(--ink-light); background:var(--pg-mid); text-align:center; padding:5px 4px 3px; }
+.stat-mini input { font-family:var(--font-head); font-size:18px; font-weight:700; width:100%; text-align:center; background:transparent; border:none; border-bottom:1px solid var(--border-color); outline:none; }
+.stat-mini input:focus { border-bottom-color:var(--accent); }
+.stat-mini .lbl { font-family:var(--font-head); font-size:6px; letter-spacing:1.5px; text-transform:uppercase; color:var(--ink-light); display:block; margin-top:2px; }
+.passive-row { display:flex; align-items:center; gap:6px; border:1px solid var(--border-color); padding:4px 7px; background:var(--pg-mid); margin-bottom:8px; }
+.passive-row input { font-family:var(--font-head); font-size:18px; font-weight:700; width:36px; text-align:center; background:transparent; border:none; border-bottom:1px solid var(--border-color); outline:none; }
+.passive-row input:focus { border-bottom-color:var(--accent); }
+.passive-lbl { font-family:var(--font-head); font-size:6.5px; letter-spacing:1px; text-transform:uppercase; color:var(--ink-light); line-height:1.5; }
+
+.conditions-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+.cond-item { display:flex; align-items:center; gap:4px; cursor:pointer; padding:2px 3px; border-radius:2px; transition:background .1s; }
+.cond-item:hover { background:color-mix(in srgb,var(--accent) 8%,transparent); }
+.cond-pip { width:10px; height:10px; border:1.5px solid var(--ink-light); border-radius:50%; flex-shrink:0; transition:all .12s; }
+.cond-pip.on { background:var(--accent); border-color:var(--accent); }
+.cond-name { font-family:var(--font-body); font-size:12px; color:var(--ink); }
+
+.spell-level-row { display:flex; align-items:center; gap:5px; margin-bottom:4px; }
+/* ═══════════════════ INSPIRATION WIDGET ═══════════════════ */
+.inspiration-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+  user-select: none;
+}
+.inspiration-btn {
+  width: 80px; height: 80px;
+  cursor: pointer;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .2s ease;
+}
+.inspiration-btn:hover { transform: scale(1.08); }
+.inspiration-btn:active { transform: scale(0.95); }
+
+.inspiration-btn svg {
+  width: 100%; height: 100%;
+  filter: drop-shadow(0 0 0px transparent);
+  transition: filter .4s ease;
+}
+/* Inactive — greyed out */
+.inspiration-btn .icon-inactive {
+  opacity: 0.25;
+  transition: opacity .4s ease;
+}
+.inspiration-btn .icon-active {
+  opacity: 0;
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .4s ease;
+}
+/* Active state */
+.inspiration-btn.active .icon-inactive { opacity: 0; }
+.inspiration-btn.active .icon-active   { opacity: 1; }
+
+/* Glow colours per theme */
+.inspiration-btn.active svg {
+  filter: drop-shadow(0 0 8px var(--insp-glow)) drop-shadow(0 0 16px var(--insp-glow));
+}
+:root           { --insp-glow: rgba(139,105,20,0.9); --insp-color: #c9a227; }
+.theme-fighter  { --insp-glow: rgba(58,74,92,0.9);  --insp-color: #607080; }
+.theme-wizard   { --insp-glow: rgba(130,80,255,0.9);  --insp-color: #a060ff; }
+.theme-rogue    { --insp-glow: rgba(40,180,40,0.9);   --insp-color: #30c030; }
+.theme-cleric   { --insp-glow: rgba(220,180,40,0.9);  --insp-color: #e8c030; }
+.theme-warlock  { --insp-glow: rgba(58,110,138,0.9);  --insp-color: #3a8aaa; }
+
+/* Pulse animation when active */
+@keyframes inspPulse {
+  0%,100% { filter: drop-shadow(0 0 6px var(--insp-glow)) drop-shadow(0 0 14px var(--insp-glow)); }
+  50%      { filter: drop-shadow(0 0 12px var(--insp-glow)) drop-shadow(0 0 28px var(--insp-glow)); }
+}
+.inspiration-btn.active svg { animation: inspPulse 2.4s ease-in-out infinite; }
+
+.inspiration-lbl {
+  font-family: var(--font-head); font-size: 8px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--ink-light); margin-top: 5px;
+}
+.inspiration-state {
+  font-family: var(--font-head); font-size: 7px; letter-spacing: 1.5px;
+  text-transform: uppercase; margin-top: 2px;
+  color: var(--ink-light); opacity: .6;
+  transition: color .3s, opacity .3s;
+}
+.inspiration-btn.active ~ .inspiration-state {
+  color: var(--insp-color); opacity: 1;
+}
+
+.spell-lvl-num { font-family:var(--font-head); font-size:8px; color:var(--accent); font-weight:600; width:14px; flex-shrink:0; }
+.spell-pips { display:flex; gap:3px; flex-wrap:wrap; }
+.spell-pip { width:12px; height:12px; border:1.5px solid var(--ink-light); border-radius:50%; cursor:pointer; background:transparent; transition:all .12s; }
+.spell-pip.used { background:var(--ink-mid); border-color:var(--ink-mid); }
+
+/* ═══════════════════ PORTRAIT GENERATION ═══════════════════ */
+.portrait-img {
+  width:100%; height:100%; object-fit:contain;
+  position:absolute; inset:0;
+  border-radius:var(--portrait-radius);
+  background:white;
+}
+.portrait-loading {
+  display:none; flex-direction:column; align-items:center; justify-content:center;
+  position:absolute; inset:0; background:color-mix(in srgb,var(--pg-dark) 85%,transparent);
+  z-index:2;
+}
+.portrait-loading.active { display:flex; }
+.portrait-spinner {
+  width:36px; height:36px;
+  border:3px solid var(--border-color);
+  border-top-color:var(--accent);
+  border-radius:50%;
+  animation:spin 0.9s linear infinite;
+  margin-bottom:10px;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+.portrait-loading-text {
+  font-family:var(--font-head); font-size:7.5px; letter-spacing:2px;
+  text-transform:uppercase; color:var(--ink-light); text-align:center; padding:0 12px;
+}
+
+.portrait-actions {
+  display:flex; flex-direction:column; align-items:center; gap:6px; margin-top:8px; width:100%;
+}
+.btn-generate {
+  font-family:var(--font-head); font-size:8px; font-weight:600;
+  letter-spacing:2px; text-transform:uppercase;
+  color:var(--pg); background:var(--accent);
+  border:none; padding:8px 18px; cursor:pointer;
+  transition:background .2s, transform .1s, box-shadow .2s;
+  box-shadow:0 2px 8px var(--accent-glow);
+  width:100%;
+}
+.btn-generate:hover { background:color-mix(in srgb,var(--accent) 80%,black); box-shadow:0 4px 16px var(--accent-glow); }
+.btn-generate:active { transform:scale(0.97); }
+.btn-generate:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+
+.api-key-row {
+  display:flex; align-items:center; gap:6px; width:100%;
+}
+.api-key-input {
+  flex:1; font-family:var(--font-body); font-size:11px; color:var(--ink);
+  background:rgba(0,0,0,0.03); border:1px solid var(--border-color);
+  padding:4px 7px; outline:none;
+}
+.api-key-input:focus { border-color:var(--accent); }
+.api-key-input::placeholder { opacity:.5; font-style:italic; }
+.api-key-lbl {
+  font-family:var(--font-head); font-size:6.5px; letter-spacing:1.5px;
+  text-transform:uppercase; color:var(--ink-light); white-space:nowrap;
+}
+.portrait-hint {
+  font-family:var(--font-head); font-size:7px; letter-spacing:1.5px;
+  text-transform:uppercase; color:var(--ink-light); text-align:center;
+  opacity:.7; margin-top:2px;
+}
+.portrait-prompt-preview {
+  font-family:var(--font-body); font-size:10px; color:var(--ink-mid);
+  border:1px solid var(--border-color); background:rgba(0,0,0,0.03);
+  padding:6px 8px; margin-top:4px; line-height:1.5;
+  max-height:80px; overflow-y:auto; cursor:text; user-select:all;
+  font-style:italic;
+}
+.portrait-error {
+  font-family:var(--font-head); font-size:7px; letter-spacing:1px;
+  color:var(--accent); text-align:center; display:none; margin-top:2px;
+}
+.portrait-error.visible { display:block; }
+.gen-counter {
+  font-family:var(--font-head); font-size:7px; letter-spacing:1.5px;
+  text-transform:uppercase; color:var(--ink-light); text-align:center;
+  margin-top:2px; transition:color .3s;
+}
+.gen-counter.low { color:var(--accent); font-weight:600; }
+.btn-purchase {
+  font-family:var(--font-head); font-size:7.5px; font-weight:600;
+  letter-spacing:2px; text-transform:uppercase;
+  color:var(--accent); background:transparent;
+  border:1.5px solid var(--accent); padding:6px 14px; cursor:pointer;
+  transition:background .2s, color .2s; width:100%; margin-top:2px;
+  display:none;
+}
+.btn-purchase:hover { background:var(--accent); color:var(--pg); }
+.btn-purchase.visible { display:block; }
+
+.footer { text-align:center; margin-top:14px; padding-top:8px; border-top:1px solid var(--border-inner); }
+.footer p { font-style:italic; font-size:9px; color:var(--ink-light); opacity:.7; letter-spacing:1px; }
+
+@media(min-width:601px) {
+  .ability-grid { grid-template-columns:repeat(3,1fr); }
+}
+@media(max-width:600px) {
+  body { padding:0; }
+  .page { border-radius:0; padding:14px 14px 20px; box-shadow:none; min-height:100vh; }
+  .page::after { inset:6px; }
+  .header h1 { font-size:18px; }
+  .header .sub { font-size:8px; }
+  .tab-bar { margin:8px -14px 12px; grid-template-columns:repeat(5,1fr); }
+  .tab-btn { font-size:7px; padding:7px 2px 5px; }
+  .identity-strip { grid-template-columns:1fr 1fr; gap:10px 12px; }
+  .identity-strip .char-name { grid-column:1/-1; }
+  .identity-strip .char-name input { font-size:16px; }
+  .tab-cols { grid-template-columns:1fr; }
+  .portrait-frame { width:180px; max-width:180px; }
+  .field input,input[type=text],input[type=number] { font-size:14px; }
+  .identity-strip .field input { font-size:13px; }
+  textarea { font-size:13px; }
+  .check-name { font-size:13px; }
+  .check-bonus { font-size:10px; }
+  .ab-score { font-size:22px; }
+  .ab-mod { font-size:11px; }
+  .sec-head { font-size:8px; }
+  .panel { padding:12px 10px 10px; }
+  .pip { width:14px; height:14px; }
+}
+
+/* ═══ WARLOCK CONTRAST OVERRIDES — must be last to win ═══ */
+.theme-warlock, .theme-warlock * { color:#05040e !important; opacity:1 !important; }
+.theme-warlock input[type=text]::placeholder,
+.theme-warlock input[type=number]::placeholder,
+.theme-warlock textarea::placeholder { color:#38345a !important; opacity:1 !important; }
+.theme-warlock .tab-btn.active { color:#1a4a62 !important; border-bottom-color:#1a4a62 !important; }
+.theme-warlock .class-badge { color:#f0eeee !important; background:var(--accent) !important; }
+.theme-warlock .header h1 { color:#1a4a62 !important; }
+.theme-warlock .rule-gem { background:#1a4a62 !important; }
+.theme-warlock .pip.prof { background:#1a4a62 !important; border-color:#1a4a62 !important; }
+.theme-warlock .pip.prof::after { background:var(--pg) !important; }
+.theme-warlock .cond-pip.on { background:var(--accent) !important; border-color:var(--accent) !important; }
+.theme-warlock .portrait-frame { border-color:#3a6e8a !important; }
+.theme-warlock .btn-generate { color:#f0eeee !important; }
+.theme-warlock .dpip.s-filled { background:var(--accent2) !important; }
+.theme-warlock .dpip.f-filled { background:var(--accent) !important; }
+</style>
+</head>
+<body>
+<div class="page" id="mainPage">
+
+  <div class="header">
+    <h1>Character Chronicle</h1>
+    <div class="sub">Dungeons &amp; Dragons · Fifth Edition</div>
+    <div class="class-badge" id="classBadge"></div>
+  </div>
+  <div class="rule"><div class="rule-line"></div><div class="rule-gem"></div><div class="rule-line"></div></div>
+
+  <div class="tab-bar">
+    <div class="tab-btn active" data-tab="tab-hero">Hero</div>
+    <div class="tab-btn" data-tab="tab-stats">Stats & Skills</div>
+    <div class="tab-btn" data-tab="tab-combat">Combat</div>
+    <div class="tab-btn" data-tab="tab-spells">Spells</div>
+    <div class="tab-btn" data-tab="tab-lore">Lore</div>
+  </div>
+
+  <!-- TAB: HERO -->
+  <div class="tab-section active" id="tab-hero">
+
+    <!-- Inspiration widget -->
+    <div class="inspiration-wrap">
+      <div class="inspiration-btn" id="inspirationBtn" onclick="toggleInspiration()">
+        <!-- INACTIVE icon (always visible when off) -->
+        <svg class="icon-inactive" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <g id="insp-icon-inactive" fill="none" stroke="var(--ink-light)" stroke-linecap="round" stroke-linejoin="round"></g>
+        </svg>
+        <!-- ACTIVE icon (glowing, shown when on) -->
+        <div class="icon-active">
+          <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+            <g id="insp-icon-active" fill="none" stroke="var(--insp-color)" stroke-linecap="round" stroke-linejoin="round"></g>
+          </svg>
+        </div>
+      </div>
+      <div class="inspiration-lbl">Inspiration</div>
+      <div class="inspiration-state" id="inspirationState">Not Inspired</div>
+    </div>
+
+    <div class="rule"><div class="rule-line"></div><div class="rule-gem"></div><div class="rule-line"></div></div>
+
+    <div class="sec-head" style="margin-top:8px;">Identity</div>
+    <div class="identity-strip">
+      <div class="field char-name">
+        <input type="text" id="charName" placeholder="Name thy hero…">
+        <div class="field-lbl">Character Name</div>
+      </div>
+      <div class="field">
+        <select id="classInput" onchange="onClassChange(this.value)" style="width:100%;font-family:var(--font-head);font-size:13px;background:transparent;border:none;border-bottom:1px solid var(--border-color);outline:none;color:var(--ink);padding:2px 0;cursor:pointer;">
+          <option value="">— Select Class —</option>
+          <option value="artificer">Artificer</option>
+          <option value="barbarian">Barbarian</option>
+          <option value="bard">Bard</option>
+          <option value="cleric">Cleric</option>
+          <option value="druid">Druid</option>
+          <option value="fighter">Fighter</option>
+          <option value="monk">Monk</option>
+          <option value="paladin">Paladin</option>
+          <option value="ranger">Ranger</option>
+          <option value="rogue">Rogue</option>
+          <option value="sorcerer">Sorcerer</option>
+          <option value="warlock">Warlock</option>
+          <option value="wizard">Wizard</option>
+        </select>
+        <div class="field-lbl">Class</div>
+      </div>
+      <div class="field">
+        <input type="text" id="charLevel" placeholder="1">
+        <div class="field-lbl">Level</div>
+      </div>
+      <div class="field">
+        <input type="text" id="charRace" placeholder="Human">
+        <div class="field-lbl">Race / Species</div>
+      </div>
+      <div class="field">
+        <input type="text" id="charBackground" placeholder="Soldier">
+        <div class="field-lbl">Background</div>
+      </div>
+      <div class="field">
+        <input type="text" id="alignInput" placeholder="Lawful Good" oninput="onAlignChange(this.value)">
+        <div class="field-lbl">Alignment</div>
+      </div>
+      <div class="field">
+        <input type="text" placeholder="Player Name">
+        <div class="field-lbl">Player</div>
+      </div>
+    </div>
+    <div class="rule" style="margin-top:12px;"><div class="rule-line"></div><div class="rule-gem"></div><div class="rule-line"></div></div>
+    <div class="tab-cols" style="align-items:start;margin-top:10px;grid-template-columns:2fr 3fr;">
+      <div class="portrait-wrap">
+        <div class="portrait-frame">
+          <div class="portrait-placeholder" id="portraitPlaceholder"><p>Thy portrait shall be conjured here by arcane artifice</p></div>
+          <img id="portraitImg" class="portrait-img" style="display:none;" alt="Character portrait">
+          <div class="portrait-loading" id="portraitLoading">
+            <div class="portrait-spinner"></div>
+            <div class="portrait-loading-text" id="portraitLoadingText">Consulting the arcane…</div>
+          </div>
+          <!-- Artificer gear frame overlay -->
+          <svg class="artificer-frame-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 600" preserveAspectRatio="none"
+               style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;display:none;">
+            <defs>
+              <path id="frame-path"
+                    d="M 20,10 h 410 a 15,15 0 0 1 15,15 v 550 a 15,15 0 0 1 -15,15 h -410 a 15,15 0 0 1 -15,-15 v -550 a 15,15 0 0 1 15,-15 z"
+                    pathLength="100" />
+              <mask id="exclude-inner">
+                <rect width="100%" height="100%" fill="white" />
+                <use href="#frame-path" fill="black" />
+              </mask>
+            </defs>
+            <use href="#frame-path"
+                 fill="none"
+                 stroke="#0e3d66"
+                 stroke-width="20"
+                 stroke-dasharray="2, 2"
+                 stroke-dashoffset="1"
+                 mask="url(#exclude-inner)" />
+            <use href="#frame-path"
+                 fill="none"
+                 stroke="#0e3d66"
+                 stroke-width="1.5" />
+            <rect x="8" y="8" width="434" height="584" rx="15" ry="15"
+                  fill="none"
+                  stroke="#0e3d66"
+                  stroke-width="1.5" />
+          </svg>
+          <!-- Fighter mercenary frame overlay — riveted iron plates, bounty board -->
+          <svg class="fighter-frame-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 600" preserveAspectRatio="none"
+               style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;display:none;">
+            <!-- Outer heavy iron border -->
+            <rect x="4" y="4" width="442" height="592" rx="0" ry="0"
+                  fill="none" stroke="#3a4a5c" stroke-width="8" stroke-linejoin="miter"/>
+            <!-- Inner border — double wall effect -->
+            <rect x="16" y="16" width="418" height="568" rx="0" ry="0"
+                  fill="none" stroke="#3a4a5c" stroke-width="2"/>
+            <!-- Thin accent line between borders -->
+            <rect x="10" y="10" width="430" height="580" rx="0" ry="0"
+                  fill="none" stroke="#607080" stroke-width="1"/>
+            <!-- Rivets — left side, evenly spaced -->
+            <circle cx="10" cy="60"  r="4" fill="#607080"/>
+            <circle cx="10" cy="120" r="4" fill="#607080"/>
+            <circle cx="10" cy="180" r="4" fill="#607080"/>
+            <circle cx="10" cy="240" r="4" fill="#607080"/>
+            <circle cx="10" cy="300" r="4" fill="#607080"/>
+            <circle cx="10" cy="360" r="4" fill="#607080"/>
+            <circle cx="10" cy="420" r="4" fill="#607080"/>
+            <circle cx="10" cy="480" r="4" fill="#607080"/>
+            <circle cx="10" cy="540" r="4" fill="#607080"/>
+            <!-- Rivets — right side, evenly spaced -->
+            <circle cx="440" cy="60"  r="4" fill="#607080"/>
+            <circle cx="440" cy="120" r="4" fill="#607080"/>
+            <circle cx="440" cy="180" r="4" fill="#607080"/>
+            <circle cx="440" cy="240" r="4" fill="#607080"/>
+            <circle cx="440" cy="300" r="4" fill="#607080"/>
+            <circle cx="440" cy="360" r="4" fill="#607080"/>
+            <circle cx="440" cy="420" r="4" fill="#607080"/>
+            <circle cx="440" cy="480" r="4" fill="#607080"/>
+            <circle cx="440" cy="540" r="4" fill="#607080"/>
+            <!-- Rivets — top side, evenly spaced -->
+            <circle cx="60"  cy="10" r="4" fill="#607080"/>
+            <circle cx="110" cy="10" r="4" fill="#607080"/>
+            <circle cx="160" cy="10" r="4" fill="#607080"/>
+            <circle cx="210" cy="10" r="4" fill="#607080"/>
+            <circle cx="260" cy="10" r="4" fill="#607080"/>
+            <circle cx="310" cy="10" r="4" fill="#607080"/>
+            <circle cx="360" cy="10" r="4" fill="#607080"/>
+            <circle cx="390" cy="10" r="4" fill="#607080"/>
+            <!-- Rivets — bottom side, evenly spaced -->
+            <circle cx="60"  cy="590" r="4" fill="#607080"/>
+            <circle cx="110" cy="590" r="4" fill="#607080"/>
+            <circle cx="160" cy="590" r="4" fill="#607080"/>
+            <circle cx="210" cy="590" r="4" fill="#607080"/>
+            <circle cx="260" cy="590" r="4" fill="#607080"/>
+            <circle cx="310" cy="590" r="4" fill="#607080"/>
+            <circle cx="360" cy="590" r="4" fill="#607080"/>
+            <circle cx="390" cy="590" r="4" fill="#607080"/>
+            <!-- Gold coin accent — top center banner bar -->
+            <rect x="160" y="2" width="130" height="14" fill="#3a4a5c"/>
+            <rect x="163" y="4" width="124" height="10" fill="#607080"/>
+            <!-- Gold coin accent — bottom center banner bar -->
+            <rect x="160" y="584" width="130" height="14" fill="#3a4a5c"/>
+            <rect x="163" y="586" width="124" height="10" fill="#607080"/>
+          </svg>
+          <!-- Monk frame overlay — ellipse with directional flourishes -->
+          <svg class="monk-frame-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 600" preserveAspectRatio="none"
+               style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;display:none;">
+            <ellipse cx="225" cy="300" rx="190" ry="260" fill="none" stroke="#4a3020" stroke-width="3" />
+            <ellipse cx="225" cy="300" rx="182" ry="252" fill="none" stroke="#4a3020" stroke-width="1" />
+            <g fill="none" stroke="#4a3020" stroke-width="1.5">
+              <path d="M 225,40 Q 210,20 225,5 Q 240,20 225,40 Z" />
+              <circle cx="225" cy="3" r="2" fill="#4a3020" stroke="none"/>
+              <path d="M 225,560 Q 210,580 225,595 Q 240,580 225,560 Z" />
+              <circle cx="225" cy="597" r="2" fill="#4a3020" stroke="none"/>
+              <path d="M 35,300 Q 15,285 5,300 Q 15,315 35,300 Z" />
+              <circle cx="3" cy="300" r="2" fill="#4a3020" stroke="none"/>
+              <path d="M 415,300 Q 435,285 445,300 Q 435,315 415,300 Z" />
+              <circle cx="447" cy="300" r="2" fill="#4a3020" stroke="none"/>
+            </g>
+          </svg>
+          <!-- Barbarian axe-slash frame overlay -->
+          <svg class="barbarian-frame-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 600" preserveAspectRatio="none"
+               style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5;display:none;">
+            <!-- Outer rough border -->
+            <rect x="6" y="6" width="438" height="588" rx="0" ry="0"
+                  fill="none" stroke="#8b2500" stroke-width="8" stroke-linejoin="miter" />
+            <!-- Inner border line -->
+            <rect x="14" y="14" width="422" height="572" rx="0" ry="0"
+                  fill="none" stroke="#8b2500" stroke-width="2" />
+            <!-- Top-left slash group -->
+            <line x1="30"  y1="0"   x2="0"   y2="40"  stroke="#8b2500" stroke-width="6" stroke-linecap="square"/>
+            <line x1="50"  y1="0"   x2="20"  y2="30"  stroke="#8b2500" stroke-width="3" stroke-linecap="square"/>
+            <!-- Top-right slash group -->
+            <line x1="400" y1="0"   x2="450" y2="55"  stroke="#8b2500" stroke-width="6" stroke-linecap="square"/>
+            <line x1="380" y1="0"   x2="430" y2="42"  stroke="#8b2500" stroke-width="3" stroke-linecap="square"/>
+            <!-- Bottom-left slash group -->
+            <line x1="0"   y1="540" x2="45"  y2="600" stroke="#8b2500" stroke-width="6" stroke-linecap="square"/>
+            <line x1="0"   y1="560" x2="30"  y2="600" stroke="#8b2500" stroke-width="3" stroke-linecap="square"/>
+            <!-- Bottom-right slash group -->
+            <line x1="450" y1="545" x2="410" y2="600" stroke="#8b2500" stroke-width="6" stroke-linecap="square"/>
+            <line x1="450" y1="565" x2="425" y2="600" stroke="#8b2500" stroke-width="3" stroke-linecap="square"/>
+            <!-- Mid-left slash -->
+            <line x1="0"   y1="270" x2="18"  y2="320" stroke="#8b2500" stroke-width="5" stroke-linecap="square"/>
+            <line x1="0"   y1="285" x2="12"  y2="310" stroke="#8b2500" stroke-width="2" stroke-linecap="square"/>
+            <!-- Mid-right slash -->
+            <line x1="450" y1="260" x2="432" y2="315" stroke="#8b2500" stroke-width="5" stroke-linecap="square"/>
+            <line x1="450" y1="278" x2="438" y2="308" stroke="#8b2500" stroke-width="2" stroke-linecap="square"/>
+            <!-- Top-center slash -->
+            <line x1="195" y1="0"   x2="225" y2="18"  stroke="#8b2500" stroke-width="4" stroke-linecap="square"/>
+            <!-- Bottom-center slash -->
+            <line x1="220" y1="600" x2="255" y2="582" stroke="#8b2500" stroke-width="4" stroke-linecap="square"/>
+          </svg>
+        </div>
+        <div class="portrait-lbl">✦ Character Portrait ✦</div>
+        <div class="portrait-actions">
+          <button class="btn-generate" id="generateBtn" onclick="generatePortrait(true)">
+            ✦ Generate Portrait ✦
+          </button>
+          <div class="gen-counter" id="genCounter"></div>
+          <button class="btn-purchase" id="purchaseBtn" onclick="purchaseMoreGenerations()">
+            ✦ Purchase 25 More Generations ✦
+          </button>
+          <div class="portrait-error" id="portraitError"></div>
+        </div>
+      </div>
+      <div class="tab-col">
+        <div class="panel">
+          <div class="panel-title">Experience &amp; Appearance</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;">
+            <div class="field"><input type="number" placeholder="0"><div class="field-lbl">Current XP</div></div>
+            <div class="field"><input type="number" placeholder="300"><div class="field-lbl">Next Level XP</div></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div class="field"><input type="text" id="charAge" placeholder="e.g. 25"><div class="field-lbl">Age</div></div>
+            <div class="field">
+              <select id="charGender" style="width:100%;font-family:var(--font-body);font-size:13px;background:transparent;border:none;outline:none;color:var(--ink);padding:2px 0;">
+                <option value="">—</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Non-binary</option>
+              </select>
+              <div class="field-lbl">Gender</div>
+            </div>
+            <div class="field"><input type="text" id="charHeight" placeholder="e.g. 5'10&quot;"><div class="field-lbl">Height</div></div>
+            <div class="field">
+              <select id="charBuild" style="width:100%;font-family:var(--font-body);font-size:13px;background:transparent;border:none;outline:none;color:var(--ink);padding:2px 0;">
+                <option value="">—</option>
+                <option>Slender</option>
+                <option>Lean</option>
+                <option>Average</option>
+                <option>Athletic</option>
+                <option>Muscular</option>
+                <option>Stocky</option>
+                <option>Heavy</option>
+              </select>
+              <div class="field-lbl">Build</div>
+            </div>
+            <div class="field"><input type="text" id="charEyeColor" placeholder="e.g. Blue"><div class="field-lbl">Eye Color</div></div>
+            <div class="field"><input type="text" id="charHairColor" placeholder="e.g. Auburn"><div class="field-lbl">Hair Color</div></div>
+            <div class="field" style="grid-column:1/-1;"><input type="text" id="charSkinTone" placeholder="e.g. Olive, Pale, Dark brown"><div class="field-lbl">Skin Tone</div></div>
+          </div>
+        </div>
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">Backstory</div>
+          <textarea rows="5" placeholder="Where didst thy hero come from?"></textarea>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Allies &amp; Organisations</div>
+          <textarea rows="3" placeholder="The Harpers, The Zhentarim…"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: STATS & SKILLS -->
+  <div class="tab-section" id="tab-stats">
+    <div class="tab-cols" style="align-items:start;">
+      <div class="tab-col">
+        <div class="sec-head">Ability Scores</div>
+        <div class="ability-grid" id="abilityScores"></div>
+        <div class="insp-prof-row" style="grid-template-columns:1fr;">
+          <div class="stat-mini"><input type="text" id="profBonus" value="+2"><span class="lbl">Prof. Bonus</span></div>
+        </div>
+        <div class="passive-row">
+          <input type="number" id="passivePerception" value="10">
+          <div class="passive-lbl">Passive<br>Perception</div>
+        </div>
+      </div>
+      <div class="tab-col">
+        <div class="sec-head">Saving Throws</div>
+        <div class="panel" style="margin-bottom:10px;"><div class="skills-list" id="savingThrows"></div></div>
+        <div class="sec-head">Skills</div>
+        <div class="panel"><div class="skills-list" id="skillsList"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: COMBAT -->
+  <div class="tab-section" id="tab-combat">
+    <div class="sec-head">Combat</div>
+    <div class="combat-stats">
+      <div class="c-stat"><input type="number" placeholder="10"><span class="lbl">Armor Class</span></div>
+      <div class="c-stat"><input type="text" placeholder="+0"><span class="lbl">Initiative</span></div>
+      <div class="c-stat"><input type="number" placeholder="30"><span class="lbl">Speed (ft)</span></div>
+    </div>
+    <div class="hp-panel">
+      <div class="hp-panel-title">Hit Points</div>
+      <div class="hp-cell hp-current"><input type="number" placeholder="—"><span class="lbl">Current</span></div>
+      <div class="hp-divider"></div>
+      <div class="hp-cell hp-max"><input type="number" placeholder="—"><span class="lbl">Maximum</span></div>
+      <div class="hp-divider"></div>
+      <div class="hp-cell hp-temp"><input type="number" placeholder="0"><span class="lbl">Temporary</span></div>
+    </div>
+    <div class="hd-death-row">
+      <div class="hd-box"><input type="text" placeholder="1d10"><span class="lbl">Hit Dice</span></div>
+      <div class="death-box">
+        <div class="death-head">Death Saves</div>
+        <div class="death-row-inner">
+          <span class="death-lbl" style="color:var(--accent2);">Successes</span>
+          <div class="death-pips">
+            <div class="dpip" onclick="this.classList.toggle('s-filled')"></div>
+            <div class="dpip" onclick="this.classList.toggle('s-filled')"></div>
+            <div class="dpip" onclick="this.classList.toggle('s-filled')"></div>
+          </div>
+        </div>
+        <div class="death-row-inner">
+          <span class="death-lbl" style="color:var(--accent);">Failures</span>
+          <div class="death-pips">
+            <div class="dpip" onclick="this.classList.toggle('f-filled')"></div>
+            <div class="dpip" onclick="this.classList.toggle('f-filled')"></div>
+            <div class="dpip" onclick="this.classList.toggle('f-filled')"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tab-cols" style="align-items:start;">
+      <div class="tab-col">
+        <div class="panel">
+          <div class="panel-title">Attacks &amp; Spellcasting</div>
+          <div style="overflow-x:auto;">
+            <table class="atk-table">
+              <thead><tr><th>Weapon / Spell</th><th>Atk</th><th>Damage &amp; Type</th></tr></thead>
+              <tbody id="atkRows"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Conditions</div>
+          <div class="conditions-grid" id="conditionsList"></div>
+        </div>
+      </div>
+      <div class="tab-col">
+        <div class="panel">
+          <div class="panel-title">Equipment &amp; Gear</div>
+          <textarea style="min-height:120px;" placeholder="Weapons, armour, adventuring gear…"></textarea>
+          <div class="currency-row">
+            <div class="coin"><input type="number" placeholder="0"><span class="coin-sym">CP</span></div>
+            <div class="coin"><input type="number" placeholder="0"><span class="coin-sym">SP</span></div>
+            <div class="coin"><input type="number" placeholder="0"><span class="coin-sym">EP</span></div>
+            <div class="coin"><input type="number" placeholder="0"><span class="coin-sym">GP</span></div>
+            <div class="coin"><input type="number" placeholder="0"><span class="coin-sym">PP</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Other Proficiencies</div>
+          <textarea rows="4" placeholder="Armour: All, shields&#10;Weapons: Simple, martial&#10;Tools: —&#10;Languages: Common, Elvish"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: SPELLS -->
+  <div class="tab-section" id="tab-spells">
+    <div class="sec-head">Spellcasting</div>
+    <div class="tab-cols" style="align-items:start;">
+      <div class="tab-col">
+        <div class="panel">
+          <div class="panel-title">Spell Stats</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div class="field"><input type="text" placeholder="INT"><div class="field-lbl">Ability</div></div>
+            <div class="field"><input type="text" placeholder="+5"><div class="field-lbl">Atk Bonus</div></div>
+            <div class="field"><input type="text" placeholder="13"><div class="field-lbl">Save DC</div></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-title">Spell Slots</div>
+          <div id="spellSlots"></div>
+        </div>
+      </div>
+      <div class="tab-col">
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">Cantrips &amp; Spells</div>
+          <textarea style="min-height:280px;font-size:11.5px;" placeholder="CANTRIPS&#10;· Fire Bolt · Mage Hand&#10;&#10;1ST LEVEL ○○○○&#10;· Magic Missile · Shield&#10;&#10;2ND LEVEL ○○○&#10;· Misty Step&#10;&#10;3RD LEVEL ○○○&#10;· Fireball&#10;…"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: LORE -->
+  <div class="tab-section" id="tab-lore">
+    <div class="sec-head">Character &amp; Lore</div>
+    <div class="tab-cols" style="align-items:start;">
+      <div class="tab-col">
+        <div class="panel"><div class="panel-title">Personality Traits</div><textarea rows="3" placeholder="How dost thy hero carry themselves?"></textarea></div>
+        <div class="panel"><div class="panel-title">Ideals</div><textarea rows="3" placeholder="What doth thy hero believe?"></textarea></div>
+        <div class="panel"><div class="panel-title">Bonds</div><textarea rows="3" placeholder="What doth thy hero hold dear?"></textarea></div>
+        <div class="panel"><div class="panel-title">Flaws</div><textarea rows="3" placeholder="Where doth thy hero fall short?"></textarea></div>
+      </div>
+      <div class="tab-col">
+        <div class="panel" style="flex:1;">
+          <div class="panel-title">Class &amp; Racial Features</div>
+          <textarea style="min-height:280px;" placeholder="Second Wind (1/rest): Heal 1d10 + level HP.&#10;&#10;Fighting Style: Defence (+1 AC in armour)&#10;&#10;Action Surge (1/rest): One additional action.&#10;&#10;…"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="rule" style="margin-bottom:6px;"><div class="rule-line"></div><div class="rule-gem"></div><div class="rule-line"></div></div>
+    <p>May thy dice roll true &nbsp;✦&nbsp; D&amp;D 5th Edition &nbsp;✦&nbsp; Character Chronicle v1.4</p>
+  </div>
+
+</div>
+
+<script>
+/* ── Inspiration Icons ── */
+// SVG path data for each theme group, drawn in a 80x80 viewBox
+const INSP_ICONS = {
+  // Barbarian — game-icons.net (scaled from 512x512 to 80x80)
+  'theme-barbarian': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="M240.094 19.594c-56.69.364-110.882 29.054-151.594 72.344-53.428 56.81-81.948 137.907-61.03 210.093 16.33-8.797 32.757-15.987 48.936-21.374-6.327-123.16 89.247-210.922 200.03-210.344 4.255-13.365 10.268-27.308 18.127-41.874-16.323-5.43-32.736-8.36-48.97-8.782-1.833-.047-3.67-.074-5.5-.062zM271.28 88.97c-97.556 1.745-179.913 77.1-176.373 186.31 10.986-2.73 21.788-4.582 32.28-5.436 14.59-1.187 28.69-.463 41.783 2.437L278.312 162.94a114.81 114.81 0 0 1-9.344-38.75c-.716-11.256.14-22.983 2.592-35.22-.093.002-.187 0-.28 0zm60.845 60.718-16.875 16.875L345.75 197l16.813-16.813-30.438-30.5zm-37.125 23L175.625 292.063l44.625 44.562 119.313-119.313L295 172.688zm189.875 46.093c-14.466 7.808-28.318 13.807-41.594 18.064.75 111.013-87.243 206.8-210.686 200.28-5.39 16.104-12.552 32.462-21.313 48.72 72.19 20.922 153.313-7.6 210.126-61.03 57.045-53.65 88.516-130.72 63.47-206.033zm-136 15.657L240.687 342.625c3.23 13.563 4.086 28.245 2.844 43.47-.862 10.58-2.752 21.476-5.53 32.56 109.585 3.718 185.128-79.008 186.594-176.905-12.342 2.506-24.16 3.403-35.5 2.688-14.287-.9-27.698-4.347-40.22-10zM169.5 312.313 20.094 461.72V494H48.75l151.188-151.188-30.438-30.5z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  // Fighter — game-icons.net (scaled from 512x512 to 80x80)
+  'theme-fighter': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="M302.5 20.875c-67.34.686-140.223 31.223-198 89C30.546 183.83 1.717 282.77 22.812 362.97l61.938-36.19-51.28 15.783 12.624-38.5 48.75-20.344-41.688 1.405 20.25-38.563 64.53-2.03-51.374-17.595L115 188.813l49.78 17.032-34.468-34.5 34.22-34.22 35.562 35.564-17.125-51.844 38.593-28.906 16.468 49.28 1.72-60.968 39.53-21.22L290 107.126l8.688-55.656 37.03-11.19 2.594 43.97 19-56.875c-17.53-4.543-35.956-6.692-54.812-6.5zm134.688 53.72-81.72 31.25L194.126 266.78c.514 2.04.78 4.178.78 6.376 0 14.36-11.638 26-26 26-14.36 0-26-11.64-26-26 0-1.422.125-2.827.345-4.187-12.834 13.486-19.27 30.975-19.375 48.31 14.055 0 28.187 4.393 40.25 12.845-20.046 11.696-45.246 36.88-56.97 56.938-3.675-2.41-7.454-4.202-11.03-5.032-1.66-.384-3.13-.6-4.406-.655-3.83-.17-6.058.963-7.376 2.28-1.757 1.758-3.166 5.112-1.625 11.75 3.08 13.28 19.22 29.42 32.5 32.5 6.64 1.542 9.992.133 11.75-1.624 1.756-1.756 3.165-5.14 1.624-11.78-.86-3.7-2.745-7.612-5.28-11.406 20.157-11.808 45.466-37.173 57.06-57.25 9.418 12.487 14.32 27.4 14.376 42.312 17.233-.035 34.447-6.443 47.875-19.03a27.18 27.18 0 0 1-1.72.062c-14.36 0-26-11.67-26-26.032 0-14.36 11.64-26 26-26 1.5 0 2.978.132 4.407.375l161.125-160.717 30.75-82.22zm-63.313 50.343 13.22 13.218L200.968 324.25l-13.22-13.22 186.127-186.09zm111.313 30.812L427.5 173.72l43.47 1.81-11.158 37.064-59.406 5.312L452.22 232l-20.658 40.063-60.968 1.718 49.25 16.47-28.906 38.594-52.907-18.188 36.658 36.625-34.25 34.22-33.407-33.406 15.94 48.72-38.095 28.436-17.625-51.375-2 64.53-39.125 19.69 1.75-43.908-20.688 51-38.468 12.625 14.843-48.312-37 59.344c80.686 22.506 180.95-6.048 255.906-81 73.73-73.73 103.107-172.08 82.717-252.094z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  // Monk — game-icons.net (scaled from 512x512 to 80x80)
+  'theme-monk': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="M256 16c-120 0-135 105-60 195 0-165 135-45 135-135 0-30-45-60-75-60zm146.25 134.532C370.61 152.554 334.75 167.875 301 196c165 0 45 135 135 135 30 0 60-45 60-75 0-75-41.016-108.838-93.75-105.468zM76 181c-30 0-60 45-60 75 0 120 105 135 195 60-165 0-45-135-135-135zm175.782 15A60 60 0 0 0 196 256a60 60 0 0 0 120 0 60 60 0 0 0-64.218-60zM316 301c0 165-135 45-135 135 0 30 45 60 75 60 120 0 135-105 60-195z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  // Wizard — game-icons.net (scaled from 512x512 to 80x80)
+  'theme-wizard': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="M319.61 20.654c13.145 33.114 13.144 33.115-5.46 63.5 33.114-13.145 33.116-13.146 63.5 5.457-13.145-33.114-13.146-33.113 5.457-63.498-33.114 13.146-33.113 13.145-63.498-5.459zM113.024 38.021c-11.808 21.04-11.808 21.04-35.724 24.217 21.04 11.809 21.04 11.808 24.217 35.725 11.808-21.04 11.808-21.04 35.724-24.217-21.04-11.808-21.04-11.808-24.217-35.725zm76.55 56.184c-.952 50.588-.95 50.588-41.991 80.18 50.587.95 50.588.95 80.18 41.99.95-50.588.95-50.588 41.99-80.18-50.588-.95-50.588-.95-80.18-41.99zm191.177 55.885c-.046 24.127-.048 24.125-19.377 38.564 24.127.047 24.127.046 38.566 19.375.047-24.126.046-24.125 19.375-38.564-24.126-.047-24.125-.046-38.564-19.375zm-184.086 83.88a96.38 96.38 0 0 0-3.492.134c-18.591 1.064-41.868 8.416-77.445 22.556L76.012 433.582c78.487-20.734 132.97-21.909 170.99-4.615V247.71c-18.076-8.813-31.79-13.399-46.707-13.737a91.166 91.166 0 0 0-3.629-.002zm122.686 11.42a209.3 209.3 0 0 0-8.514.098c-12.81.417-27.638 2.215-45.84 4.522v177.135c43.565-7.825 106.85-4.2 171.244 7.566l-39.78-177.197c-35.904-8.37-56.589-11.91-77.11-12.123zm2.289 16.95c18.889.204 36.852 2.768 53.707 5.02l4.437 16.523c-23.78-3.75-65.966-4.906-92.467-.98l-.636-17.805c11.959-2.154 23.625-2.88 34.959-2.758zm-250.483 4.658L60.54 313.002h24.094l10.326-46.004H71.158zm345.881 0 39.742 177.031 2.239 9.973 22.591-.152-40.855-186.852h-23.717zm-78.857 57.82c16.993.026 33.67.791 49.146 2.223l3.524 17.174c-32.645-3.08-72.58-2.889-102.995 0l-.709-17.174c16.733-1.533 34.04-2.248 51.034-2.223zm-281.793 6.18-6.924 30.004h24.394l6.735-30.004H56.389zm274.418 27.244c4.656.021 9.487.085 14.716.203l2.555 17.498c-19.97-.471-47.115.56-59.728 1.05l-.7-17.985c16.803-.493 29.189-.828 43.157-.766zm41.476.447c8.268.042 16.697.334 24.121.069l2.58 17.74c-8.653-.312-24.87-.83-32.064-.502l-2.807-17.234a257.25 257.25 0 0 1 8.17-.073zm-326.97 20.309-17.985 77.928 25.035-.17 17.455-77.758H45.313zm303.164 11.848c19.608-.01 38.66.774 56.449 2.572l2.996 20.787c-34.305-4.244-85.755-7.697-119.1-3.244l-.14-17.922c20.02-1.379 40.186-2.183 59.795-2.193zm-166.606 44.05c-30.112.09-67.916 6.25-115.408 19.76l-7.22 2.053 187.759-1.27v-6.347c-16.236-9.206-37.42-14.278-65.13-14.196zm134.41 6.174c-19.63.067-37.112 1.439-51.283 4.182v10.064l177.594-1.203c-44.322-8.634-89.137-13.17-126.31-13.043zM26 475v18h460v-18H26z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  // Cleric — game-icons.net (scaled from 512x512 to 80x80)
+  'theme-cleric': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="m475.7 23.5-16.5 16.45c2.3 1.93 4.5 3.96 6.7 6.11 2.1 2.15 4.2 4.37 6.1 6.66l16.5-16.48zm-84 9.73c-19.5 0-39 6.51-55 19.54l-17.9-17.94L306 47.55 464.4 206l12.8-12.8-18-18c27.9-34.3 25.9-84.46-6-116.41-17.1-17.04-39.3-25.56-61.5-25.56zm.1 22.51a8 8 0 0 1 5.5 2.34 8 8 0 0 1 0 11.32 8 8 0 0 1-11.3 0 8 8 0 0 1 0-11.32 8 8 0 0 1 5.8-2.34zm43.9 12.59a8 8 0 0 1 5.6 2.34 8 8 0 0 1 0 11.31 8 8 0 0 1-11.3 0 8 8 0 0 1 0-11.31 8 8 0 0 1 5.7-2.34zM314.9 79.09c-13.9 25.71-13.8 56.81.1 82.51l-36.6 36.6-7.7-7.8-12.8 12.8 50.9 50.9 12.8-12.8-7.8-7.8 36.6-36.6c25.7 13.9 56.7 13.9 82.4.1zm133.3 33.21a8 8 0 0 1 .1 0 8 8 0 0 1 5.6 2.4 8 8 0 0 1 0 11.3 8 8 0 0 1-11.4 0 8 8 0 0 1 0-11.3 8 8 0 0 1 5.7-2.4zM254 224.6 100.7 359.8l51.5 51.5L287.4 258zM87.16 371.8 69.89 387c-3.53 3.6-5.82 9.8-5.82 16.3 0 5.2 1.47 10.2 3.85 13.7-3.23-1.3-6.55-2.2-9.87-2.7-9.4-1.3-19.3.9-26.3 7.9s-9.26 16.9-7.92 26.3c1.34 9.3 6.01 18.5 13.58 26.1 7.56 7.5 16.75 12.2 26.02 13.5 9.4 1.4 19.3-.9 26.3-7.9s9.26-16.9 7.92-26.3c-.48-3.3-1.4-6.6-2.72-9.8 3.61 2.4 8.67 3.9 13.77 3.9 6.5 0 12.7-2.3 16.3-5.8l15.2-17.3zm-35.18 60.1c1.08 0 2.26 0 3.53.2 4.95.8 10.89 3.6 15.84 8.5 4.95 5 7.77 10.9 8.48 15.9.71 5.1-.42 8.6-2.83 11-2.4 2.4-5.94 3.5-11.03 2.8-4.95-.7-10.89-3.5-15.84-8.5-4.95-4.9-7.77-10.8-8.48-15.8-.71-5.1.42-8.6 2.83-11 1.8-1.8 4.24-2.9 7.5-3.1z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  // Bard — game-icons.net (scaled from 512x512 to 80x80)
+  'theme-bard': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="M227.346 21.72C166.6 21.42 106.33 48.002 65.633 99.272c-70.398 88.68-55.576 217.634 33.103 288.032 6.407 5.09 13.482 9.924 20.276 14.13C46.694 328.73 38.35 211.73 103.664 129.462c65.31-82.275 181.147-100.695 268.36-46.756-5.63-5.66-11.952-11.454-18.358-16.54-37.412-29.7-81.993-44.23-126.32-44.448zm40.79 68.012c-17.173-.17-34.464 4.025-50.984 13.588l.13.237-3.91 1.95c32.484 65.062 44.2 140.54 37.956 217.565-16.43-21.657-45.042-39.13-74.498-43.38-40.71-5.87-67.6 15.738-60.06 48.265 7.542 32.527 46.656 63.654 87.365 69.525 33.316 4.805 57.36-8.8 60.87-31.726h.005c8.48-53.158 9.01-106.548.57-157.475 59.49-1.135 110.173 84.413 71.965 171.062 80.733-78.593 6.76-226.6-81.28-213.508a395.884 395.884 0 0 0-6.144-20.176c76.357-22.337 165.25 73.996 134.405 190.856C461.34 235.536 366.66 90.718 268.137 89.732zm119.83 14.264c74.538 70.422 86.508 187.106 23.778 271.363-62.724 84.26-177.937 106.267-266.78 55.062 5.804 5.48 12.3 11.076 18.862 15.96 90.823 67.61 219.258 48.798 286.867-42.028 67.612-90.823 48.798-219.256-42.025-286.868-6.56-4.887-13.783-9.498-20.703-13.49z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  // Ranger — game-icons.net (scaled from 512x512 to 80x80)
+  'theme-ranger': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="M100.44 11.777V63.3l68.027 68.024v-51.52L100.44 11.776zM36.8 26.087l-10.538 10.26L153.64 163.565a167.234 167.234 0 0 1 8.887-11.75L36.8 26.087zm-24.71 74.044 68.025 68.024h51.676L63.683 100.13H12.09zM256.006 124.1c-24.66.192-51.354 10.48-75.348 34.718-34.8 35.155-56.222 127.215-18.105 159.436-7.546-35.653-5.986-77.632 26.35-119.467l.035.033c.61-.843 1.23-1.655 1.853-2.46a183.363 183.363 0 0 1 5.624-6.647c.645-.697 1.29-1.393 1.945-2.065l-.063-.063a195.22 195.22 0 0 1 3.97-4.236c43.752-45.324 119.946-3.634 89.938 65.992h.29c-2.88 6.677-6.74 13.608-11.702 20.742l-69.31-69.31a74.098 74.098 0 0 0-9.17 11.406l70.322 70.234c-8.92 15.136-13.956 30.713-15.79 45.766h-.263c-2.245 18.27.347 35.66 6.412 50.576 4.115 10.427 9.893 19.66 16.947 27.103l.156-.27c5.984 6.286 12.834 11.354 20.29 14.866 66.005 31.093 128.726 54.608 196.23 76.507l-.17-.443.546.222-7.408-18.144c-31.305-81.676-62.515-160.046-86.413-243.28l-.002.006c.26 43.795-9.063 78.84-23.848 106.828l30.157 30.41a128.667 128.667 0 0 0 9.633-17.115l43.762 107.176L354.9 418.538c6.27-2.965 12.17-6.26 17.705-9.865l-29.255-29.268c-23.927 6.417-50.26-12.102-52.73-42.904-.008-.123-.02-.244-.03-.367-.06-.83-.097-1.67-.123-2.516-.006-.21-.02-.417-.024-.63-.02-1.007-.02-2.024.012-3.055.257-8.665 1.45-17.172 3.838-25.893l87 86.89 6.375 6.38a126.938 126.938 0 0 0 10.29-10.064l-28.528-28.53-69.84-69.84c4.99-11.8 12.255-24.317 22.402-38.37 19.266-26.68 21.558-53.408 13.063-75.332a71.708 71.708 0 0 0-.668-1.682l-.012-.027c-11.07-27.104-38.573-46.637-70.787-49.108-2.502-.19-5.03-.28-7.582-.26z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  'theme-paladin': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="M253.875 20.844c-61.545.405-123.647 9.54-187.47 27.812L59.938 50.5l-.28 6.72c-6.405 147.46 49.12 346.625 192.28 429.28l4.688 2.688 4.656-2.688c139.03-80.27 201.88-281.764 195.376-429.28l-.125-5.907-6.624-2.657c-63.63-18.215-126.57-27.65-190.062-27.812-1.984-.005-3.984-.013-5.97 0zm.344 18.625c1.86-.013 3.73-.006 5.593 0 59.47.15 118.43 8.782 178.28 25.343 3.956 139.034-57.428 327.223-181.468 402.625-128.09-77.646-182.55-263.02-178.438-402.594C138.233 48.228 196.493 39.838 254.22 39.47zM258 56.03l-28.438 126.72-45.312-25.313 26.97 48.25-92.5 26.157 91.655 25.937-26.688 47.72 45.625-25.5 28.657 127.688 28.655-127.625 45.875 25.656-26.72-47.814 91.845-26-92.75-26.25 27.063-48.406-45.5 25.438L258 56.03z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  'theme-druid': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="M245.003 21.882c-166.998.752-303.014 211.052-130.59 381.17 8.035 25.41 42.784 41.465 94.91 57.862 37.832 11.993 50.783-4.965 42.102-27.322-37.478-96.526-122.616-93.237-128.593-102.07C19.647 179.044 185.37 34.12 321.578 99.659c154.92 74.51 93.159 218.387 5.099 279.26-33.979 23.392-54.793 53.902-43.615 84.13 5.99 16.174 34.958 29.057 45.928 26.818 8.658-1.764-36.293-26.3-8.303-55.948 22.237-23.66 89.603-37.464 125.124-103.51 67.453-125.152 28.701-238.4-130.697-296.26-12.156-4.374-24.254-7.519-36.38-9.55a199.684 199.684 0 0 0-33.73-2.716zm11.434 80.2s-28.375 30.73-27.871 62.145c.03 6.434 1.304 12.957 3.231 19.139 10.2 12.01 18.472 25.93 25.648 41.036 7.086-18.501 16.129-34.364 27.367-47.29.711-3.9 1.096-7.74 1.096-11.625-.415-31.398-29.471-63.405-29.471-63.405zm114.657 53.941c-53.459 3.158-88.03 51.295-108.637 93.234-.89 1.912-7.449 2.436-8.6.46-15.21-27.53-24.758-48.212-43.555-63.807-17.79-14.795-40.236-23.601-70.45-23.764 1.305 11.993 7 44.86 30.808 63.08 8.125 6.24 19.924 9.474 31.904 12.245 11.92 2.684 24.163 4.803 33.503 10.348 7.531 4.477 12.334 11.475 14.618 19.614 2.283 8.108 2.224 17.314.475 27.07-2.937 16.945-10.912 35.58-21.557 52.747 0 0 31.488 13.12 37.093 62.636 10.436-25.351 32.407-39.849 32.407-39.849-11.563-16.442-27.99-58.99-31.903-75.712-2.165-9.62-2.847-18.769-1.068-26.997 1.75-8.212 6.079-15.505 13.343-20.383 9.014-6.035 21.022-8.822 32.852-12.2 11.86-3.397 23.394-7.37 31.34-14.1 14.054-12.008 21.05-29.25 24.46-43.718 1.661-7.25 2.521-13.715 2.847-18.31.12-1.127.09-1.72.12-2.594zM157.973 387.005c9.72.266 35.546 20.438 28.251 21.939-31.767 6.533-35.988-13.624-31.287-20.722.588-.887 1.647-1.254 3.036-1.217z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  'theme-artificer': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="m265.344 17.5-4.188 25.313a212.701 212.701 0 0 0-52.562 6.28l-9.438-25.062-55.125 20.75 9.907 26.282a215.577 215.577 0 0 0-41.5 30.876L90 83.53l-37.375 45.5L75.75 148a212.944 212.944 0 0 0-20.5 46.594l-30.063-4.97-9.593 58.095L46 252.75c-.374 17.218 1.313 34.127 4.906 50.438L22 314.063l20.75 55.125 28.625-10.782a215.542 215.542 0 0 0 29.28 41.75L81.688 423.25l45.532 37.344 18.343-22.344c14.386 9.118 30.04 16.577 46.687 22.125l-4.53 27.5 58.093 9.594 4.343-26.283c18.046.874 35.764-.54 52.875-4.03l8.97 23.78 55.094-20.75-8.53-22.656a215.44 215.44 0 0 0 44.655-30.78l17.936 14.72 37.344-45.533-17.188-14.093a212.909 212.909 0 0 0 23.25-50.03l21.407 3.53 9.56-58.094-21.06-3.47a212.68 212.68 0 0 0-5.408-55.06l19.844-7.47-20.75-55.125-20.187 7.594a215.574 215.574 0 0 0-32.5-44.376l14.155-17.25-45.5-37.375-14.72 17.936c-15.396-9.116-32.13-16.37-49.936-21.47l3.967-24.092-58.093-9.594zm-8.03 47.938A191.66 191.66 0 0 1 291.124 68C395.113 85.164 465.665 183.606 448.5 287.594 431.336 391.58 332.894 462.134 228.906 444.97 124.92 427.803 54.366 329.36 71.53 225.374c15.02-90.99 92.292-156.386 181.032-159.813 1.585-.06 3.16-.103 4.75-.124zm.217 18.687c-1.437.018-2.88.04-4.31.094-80.154 3.037-149.672 61.917-163.25 144.186-15.52 94.022 47.977 182.606 142 198.125 94.02 15.52 182.573-47.977 198.093-142 15.52-94.02-47.947-182.573-141.97-198.092a173.956 173.956 0 0 0-30.562-2.313zm.408 18.156c9-.116 18.145.546 27.343 2.064 84.096 13.88 140.85 93.092 126.97 177.187-13.88 84.096-93.06 140.85-177.156 126.97-25.808-4.26-49.03-14.68-68.438-29.5l109.688-133.625 52.844 43.375 58.437-71.188-108.22-88.78-101.842 35.53 71 58.25L140.78 353.938c-26.985-33.066-40.165-77.126-32.655-122.625 12.146-73.583 74.283-126.223 145.97-128.937 1.28-.048 2.557-.077 3.843-.094z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  // Warlock — game-icons.net (scaled from 512x512 to 80x80)
+  'theme-warlock': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="m256 16-32 112 32 32 32-32-32-112zM64 96l32 80 64 16-96-96zm384 0-96 96 64-16 32-80zm-192 80-64 48-128 32c80 16 128 96 192 128 64-32 112.476-110.213 192-128l-128-28.31L256 176zm-39.512 52.682 28.342 8.863-7.45 20.955L256 310.895l18.62-52.395-7.45-20.955 28.342-8.863c14.923 10.97 24.488 28.03 24.488 47.283C320 309.237 291.47 336 256 336s-64-26.763-64-60.035c0-19.254 9.565-36.314 24.488-47.283zM96 336l-64 48-16 64 32-32 64-48s-16-27.61-16-32zm320 0-16 32 64 48 32 32-16-64-64-48zm-272 64-16 64 48-48-32-16zm112 0-48 16 48 80 48-80-48-16zm112 0-32 16 48 48-16-64z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  // Sorcerer — game-icons.net (scaled from 512x512 to 80x80)
+  'theme-sorcerer': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="M298.736 21.016c-99.298 0-195.928 104.647-215.83 233.736-7.074 45.887-3.493 88.68 8.512 124.787a243.08 243.08 0 0 1-11.467-20.034c-16.516-32.335-24.627-65.378-25-96.272-11.74 36.254-8.083 82.47 14.482 126.643 27.7 54.227 81.563 91.94 139.87 97.502a136.491 136.491 0 0 0 17.364 1.108c99.298 0 195.93-104.647 215.83-233.736 9.28-60.196.23-115.072-22.133-156.506 21.625 21.867 36.56 45.786 44.617 69.496.623-30.408-14.064-65.766-44.21-95.806-33.718-33.598-77.227-50.91-114.995-50.723-2.328-.118-4.67-.197-7.04-.197zm-5.6 36.357c40.223 0 73.65 20.342 95.702 53.533 15.915 42.888 12.51 108.315.98 147.858-16.02 54.944-40.598 96.035-79.77 126.107-41.79 32.084-98.447 24.39-115.874-5.798a43.356 43.356 0 0 1-3.38-7.385c11.724 14.06 38.188 14.944 61.817 1.3 25.48-14.71 38.003-40.727 27.968-58.108-10.036-17.384-38.826-19.548-64.307-4.837-9.83 5.676-17.72 13.037-23.14 20.934a81.918 81.918 0 0 1 1.626-3.88c-18.687 24.49-24.562 52.126-12.848 72.417 38.702 45.923 98.07 25.503 140.746-6.426 37.95-28.392 72.32-73.55 89.356-131.988a295.488 295.488 0 0 0 3.467-13.008c-.286 2.218-.59 4.442-.934 6.678-16.807 109.02-98.412 197.396-182.272 197.396-35.644 0-65.954-15.975-87.74-42.71-26.492-48.396-15.988-142.083 4.675-185.15 26.745-55.742 66.133-122.77 134.324-116.804 46.03 4.027 63.098 58.637 39.128 116.22-8.61 20.685-21.192 39.314-36.21 54.313 24.91-16.6 46.72-42.13 59.572-73 23.97-57.583 6.94-113.422-39.13-116.805-85.737-6.296-137.638 58.55-177.542 128.485a318.924 318.924 0 0 0-20.977 60.707 263.164 263.164 0 0 1 2.493-22.652C127.67 145.75 209.275 57.373 293.135 57.373z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  // Rogue — game-icons.net (scaled from 512x512 to 80x80)
+  'theme-rogue': (stroke, w) => `
+    <g transform="scale(0.15625)">
+      <path d="M296.472 22.826c-21.29.147-43.872 3.363-56.926 12.576L168.93 73.304l-39.355 53.457c-8.281 12.78-2.372 37.51 23.49 21.659l28.312-37.344c35.972-31.06 109.391-16.746 74.575 45.506-17.101 36.058-9.058 53.676 12.917 61.06l10.06-33.728c17.399-39.156 49.806-46.182 48.47-77.735 0 0 177.104 129.212 66.836 282.278-58.331 79.654-206.993 83.446-274.873 45.9C47.345 394.525 4.758 300.521 45.81 219.667c12.662-30.787 14.92-39.57-9.818-.42-45.683 81.518 16.354 220.248 86.937 250.776 99.658 43.104 265.63 8.011 311.414-51.113 21.881-28.258 47.416-72.584 54.906-123.082 7.635-51.472-3.544-97.003-24.162-140.225C428.352 78.594 348.128 29.886 348.128 29.886c-5.057-3.452-27.527-7.227-51.656-7.06zm-69.674 88.314c-12.66-.197-25.06 5.02-34.101 12.64l-28.387 37.331c7.763 6.19 15.544 2.885 23.348-4.617 9.183 4.637 16.248-2.57 22.084-16.946 2.404-9.814 5.97-16.759 17.056-28.408zm-96.586 61.522c-1.627-.013-3.2.353-4.728 1.095-3.06 1.538-6.497 5.054-9.617 11.633 14.028 9.52 29.958 20.009 42.595 35.022.94-.54 1.935-1.001 2.918-1.397.103-.022.203-.041.264-.084-2.515-16.675-10.719-32.75-19.736-40.658-4.265-3.722-8.115-5.583-11.696-5.611zm56.479 7.55c-4.934 8.328-10.222 16.926-13.367 26.669a58.653 58.653 0 0 0-2.245 9.994c.25-.02.504-.065.748-.02 3.085 0 6.247.702 9.184 2.203.312-3.102 1.038-6.077 1.936-9.056 2.664-8.2 7.47-16.237 12.488-24.588zm-88.662 7.327c-2.07-.031-4.276.531-6.692 1.623-.35.145-.682.313-.957.523-5.287 2.6-10.763 7.867-14.447 13.635-3.704 5.829-5.454 12.098-4.83 16.111.625 4.083 2.396 6.685 9.787 7.938 19.068 3.307 38.66 5.994 58.041 12.238 2.042-3.539 4.664-6.934 7.658-10.016 1.067-1.162 2.252-2.243 3.46-3.351-13.14-15.198-30.62-25.94-46.155-36.766-1.865-1.28-3.796-1.904-5.865-1.935zm122.14 18.197c-7.043-.06-13.582 1.395-19.59 4.018-5.913 2.682-11.24 6.533-16.07 11.466.354.317.723.587 1.08.922 1.998 1.749 3.789 3.993 5.328 6.64 8.933-9.873 19.548-14.033 33.21-12.68l.997-10.077a50.667 50.667 0 0 0-4.955-.289zm-48.385 21.256c-2.267.019-4.914.746-7.662 2.035-.373.21-.77.397-1.16.629-3.12 1.707-6.291 4.104-9.08 6.935-5.54 5.742-9.08 13.196-9.139 17.592 0 2.226.476 3.372 1.745 4.477.731.744 2.19 1.456 4.312 1.935 2.125-4.418 4.725-8.328 7.83-11.58 6.807-6.992 14.281-12.155 22.213-15.736.206-.125.48-.21.69-.336-.88-1.372-1.79-2.452-2.711-3.244-2.203-1.981-4.413-2.688-7.037-2.707zm40.344 9.674c-9.429.002-18.49 1.764-27.02 5.666-6.788 3.126-13.221 7.664-19.13 13.806-6.286 6.45-10.956 19.3-12.64 34.897-1.646 15.651-.557 33.887 3.333 51.107 3.87 17.155 12.802 31.705 19.239 44.512 48.312 96.12 209.412 11.679 146.525-76.113-10.5-14.66-22.464-33.69-40.617-47.389-18.216-13.574-39.686-23.569-60.145-25.916a82.067 82.067 0 0 0-9.545-.57zm-132.818.715c-.168 1.06-.336 2.12-.377 3.142-.522 6.412 1.06 11.64 3.539 14.531 2.454 2.831 5.577 4.162 11.68 2.461 12.969-3.542 29.08-5.895 40.826-7.332a9.24 9.24 0 0 0 .207-1.129c-18.07-5.741-36.83-8.362-55.875-11.673z"
+            fill="${stroke}"/>
+    </g>
+  `,
+  'default': (stroke, w) => `
+    <line x1="40" y1="16" x2="40" y2="64" stroke="${stroke}" stroke-width="${w}"/>
+    <line x1="16" y1="40" x2="64" y2="40" stroke="${stroke}" stroke-width="${w}"/>
+    <line x1="22" y1="22" x2="58" y2="58" stroke="${stroke}" stroke-width="${w}"/>
+    <line x1="58" y1="22" x2="22" y2="58" stroke="${stroke}" stroke-width="${w}"/>
+  `
+};
+
+let inspirationActive = false;
+
+function getInspirationTheme() {
+  const page = document.getElementById('mainPage');
+  if (page.classList.contains('theme-artificer')) return 'theme-artificer';
+  if (page.classList.contains('theme-barbarian')) return 'theme-barbarian';
+  if (page.classList.contains('theme-fighter'))   return 'theme-fighter';
+  if (page.classList.contains('theme-sorcerer'))  return 'theme-sorcerer';
+  if (page.classList.contains('theme-wizard'))    return 'theme-wizard';
+  if (page.classList.contains('theme-monk'))      return 'theme-monk';
+  if (page.classList.contains('theme-ranger'))    return 'theme-ranger';
+  if (page.classList.contains('theme-rogue'))     return 'theme-rogue';
+  if (page.classList.contains('theme-druid'))     return 'theme-druid';
+  if (page.classList.contains('theme-paladin'))   return 'theme-paladin';
+  if (page.classList.contains('theme-cleric'))    return 'theme-cleric';
+  if (page.classList.contains('theme-warlock'))   return 'theme-warlock';
+  if (page.classList.contains('theme-bard'))      return 'theme-bard';
+  return 'default';
+}
+
+function renderInspirationIcon() {
+  const themeKey = getInspirationTheme();
+  const iconFn   = INSP_ICONS[themeKey];
+  const inactive = document.getElementById('insp-icon-inactive');
+  const active   = document.getElementById('insp-icon-active');
+  if (!inactive || !active) return;
+  inactive.innerHTML = iconFn('var(--ink-light)', 3.5);
+  active.innerHTML   = iconFn('var(--insp-color)', 3.5);
+}
+
+function toggleInspiration() {
+  inspirationActive = !inspirationActive;
+  const btn   = document.getElementById('inspirationBtn');
+  const state = document.getElementById('inspirationState');
+  btn.classList.toggle('active', inspirationActive);
+  state.textContent = inspirationActive ? 'Inspired!' : 'Not Inspired';
+}
+
+const CLASS_THEMES={
+  artificer: {cls:'theme-artificer', label:'The Artificer'},
+  barbarian: {cls:'theme-barbarian', label:'The Barbarian'},
+  bard:      {cls:'theme-bard',      label:'The Bard'},
+  cleric:    {cls:'theme-cleric',    label:'The Cleric'},
+  druid:     {cls:'theme-druid',     label:'The Druid'},
+  fighter:   {cls:'theme-fighter',   label:'The Fighter'},
+  monk:      {cls:'theme-monk',      label:'The Monk'},
+  paladin:   {cls:'theme-paladin',   label:'The Paladin'},
+  ranger:    {cls:'theme-ranger',    label:'The Ranger'},
+  rogue:     {cls:'theme-rogue',     label:'The Rogue'},
+  sorcerer:  {cls:'theme-sorcerer',  label:'The Sorcerer'},
+  warlock:   {cls:'theme-warlock',   label:'The Warlock'},
+  wizard:    {cls:'theme-wizard',    label:'The Wizard'},
+};
+const ALIGN_MAP={lawful:'align-lawful',chaotic:'align-chaotic',good:'align-good',evil:'align-evil'};
+
+function applyGearFrame() {
+  const frame = document.querySelector('.portrait-frame');
+  if (!frame) return;
+  const page = document.getElementById('mainPage');
+  if (!page.classList.contains('theme-artificer')) {
+    frame.style.clipPath = '';
+    frame.style.overflow = '';
+    return;
+  }
+  const w = frame.offsetWidth;
+  const h = frame.offsetHeight;
+  if (!w || !h) return;
+
+  const toothD = 7;   // tooth depth (how far it sticks out)
+  const toothW = 12;  // tooth width
+  const gapW   = 8;   // gap between teeth
+  const r      = 12;  // corner radius
+
+  const points = [];
+  const pct = (x, y) => `${((x/w)*100).toFixed(3)}% ${((y/h)*100).toFixed(3)}%`;
+
+  // Top edge: left-to-right, starting after corner radius
+  points.push(pct(r, 0));
+  let x = r;
+  while (x + toothW + gapW <= w - r) {
+    x += gapW / 2;
+    points.push(pct(x, 0));
+    points.push(pct(x, -toothD));
+    points.push(pct(x + toothW, -toothD));
+    points.push(pct(x + toothW, 0));
+    x += toothW + gapW / 2;
+  }
+  points.push(pct(w - r, 0));
+
+  // Top-right corner
+  points.push(pct(w, r));
+
+  // Right edge: top-to-bottom
+  let y = r;
+  while (y + toothW + gapW <= h - r) {
+    y += gapW / 2;
+    points.push(pct(w, y));
+    points.push(pct(w + toothD, y));
+    points.push(pct(w + toothD, y + toothW));
+    points.push(pct(w, y + toothW));
+    y += toothW + gapW / 2;
+  }
+  points.push(pct(w, h - r));
+
+  // Bottom-right corner
+  points.push(pct(w - r, h));
+
+  // Bottom edge: right-to-left
+  x = w - r;
+  while (x - toothW - gapW >= r) {
+    x -= gapW / 2;
+    points.push(pct(x, h));
+    points.push(pct(x, h + toothD));
+    points.push(pct(x - toothW, h + toothD));
+    points.push(pct(x - toothW, h));
+    x -= toothW + gapW / 2;
+  }
+  points.push(pct(r, h));
+
+  // Bottom-left corner
+  points.push(pct(0, h - r));
+
+  // Left edge: bottom-to-top
+  y = h - r;
+  while (y - toothW - gapW >= r) {
+    y -= gapW / 2;
+    points.push(pct(0, y));
+    points.push(pct(-toothD, y));
+    points.push(pct(-toothD, y - toothW));
+    points.push(pct(0, y - toothW));
+    y -= toothW + gapW / 2;
+  }
+  points.push(pct(0, r));
+
+  // Back to top-left corner
+  points.push(pct(r, 0));
+
+  frame.style.clipPath = `polygon(${points.join(', ')})`;
+  frame.style.overflow = 'visible';
+  frame.style.borderRadius = '0';
+}
+
+function onClassChange(val){
+  const page=document.getElementById('mainPage'),badge=document.getElementById('classBadge');
+  const theme=CLASS_THEMES[val];
+  Object.values(CLASS_THEMES).forEach(t=>page.classList.remove(t.cls));
+  if(theme){page.classList.add(theme.cls);badge.textContent=theme.label;badge.classList.add('visible');}
+  else badge.classList.remove('visible');
+  renderInspirationIcon();
+}
+function onAlignChange(val){
+  const page=document.getElementById('mainPage'),lower=val.toLowerCase();
+  Object.values(ALIGN_MAP).forEach(c=>page.classList.remove(c));
+  Object.entries(ALIGN_MAP).forEach(([k,c])=>{if(lower.includes(k))page.classList.add(c);});
+}
+
+const ABILITIES=[{key:'str',label:'Strength'},{key:'dex',label:'Dexterity'},{key:'con',label:'Constitution'},{key:'int',label:'Intelligence'},{key:'wis',label:'Wisdom'},{key:'cha',label:'Charisma'}];
+const scores={str:10,dex:10,con:10,int:10,wis:10,cha:10};
+const saveProf={str:false,dex:false,con:false,int:false,wis:false,cha:false};
+const SKILLS=[{label:'Acrobatics',ab:'dex'},{label:'Animal Handling',ab:'wis'},{label:'Arcana',ab:'int'},{label:'Athletics',ab:'str'},{label:'Deception',ab:'cha'},{label:'History',ab:'int'},{label:'Insight',ab:'wis'},{label:'Intimidation',ab:'cha'},{label:'Investigation',ab:'int'},{label:'Medicine',ab:'wis'},{label:'Nature',ab:'int'},{label:'Perception',ab:'wis'},{label:'Performance',ab:'cha'},{label:'Persuasion',ab:'cha'},{label:'Religion',ab:'int'},{label:'Sleight of Hand',ab:'dex'},{label:'Stealth',ab:'dex'},{label:'Survival',ab:'wis'}];
+const skillProf=SKILLS.map(()=>'none');
+const CONDITIONS=['Blinded','Charmed','Deafened','Exhausted','Frightened','Grappled','Incapacitated','Invisible','Paralyzed','Petrified','Poisoned','Prone','Restrained','Stunned','Unconscious','Concentrating'];
+const SLOT_COUNTS=[4,3,3,3,3,2,2,1,1];
+
+const mod=s=>Math.floor((s-10)/2);
+const fmt=m=>(m>=0?'+':'')+m;
+const getPB=()=>parseInt(document.getElementById('profBonus')?.value)||2;
+
+function buildAbilities(){
+  const wrap=document.getElementById('abilityScores');
+  ABILITIES.forEach(ab=>{
+    const box=document.createElement('div');box.className='ability-box';
+    box.innerHTML=`<span class="ab-name">${ab.label.slice(0,3).toUpperCase()}</span>
+      <input class="ab-score" type="number" min="1" max="30" value="${scores[ab.key]}" data-key="${ab.key}">
+      <div class="ab-mod" id="mod-${ab.key}">${fmt(mod(scores[ab.key]))}</div>
+      <div class="save-row">
+        <div class="pip" id="spip-${ab.key}" onclick="toggleSave('${ab.key}',this)"></div>
+        <span class="save-label">Save</span>
+        <span class="save-bonus" id="sbonus-${ab.key}">+0</span>
+      </div>`;
+    wrap.appendChild(box);
+  });
+  wrap.addEventListener('input',e=>{
+    if(!e.target.matches('.ab-score'))return;
+    const key=e.target.dataset.key;scores[key]=parseInt(e.target.value)||10;
+    document.getElementById('mod-'+key).textContent=fmt(mod(scores[key]));refresh();
+  });
+}
+
+function toggleSave(key,pip){
+  saveProf[key]=!saveProf[key];
+  document.querySelectorAll(`[id^="spip-${key}"]`).forEach(p=>p.classList.toggle('prof',saveProf[key]));
+  document.querySelectorAll(`[id^="svlpip-${key}"]`).forEach(p=>p.classList.toggle('prof',saveProf[key]));
+  refresh();
+}
+
+function buildSaveList(){
+  const wrap=document.getElementById('savingThrows');
+  ABILITIES.forEach(ab=>{
+    const row=document.createElement('div');row.className='check-row';
+    row.innerHTML=`<div class="pip" id="svlpip-${ab.key}" onclick="toggleSave('${ab.key}',this)"></div>
+      <span class="check-bonus" id="svlbonus-${ab.key}">+0</span>
+      <span class="check-name">${ab.label}</span>`;
+    wrap.appendChild(row);
+  });
+}
+
+function buildSkillList(){
+  const wrap=document.getElementById('skillsList');
+  SKILLS.forEach((sk,i)=>{
+    const row=document.createElement('div');row.className='check-row';
+    row.innerHTML=`<div class="pip" id="skpip-${i}" onclick="cycleSkill(${i},this)"></div>
+      <span class="check-bonus" id="skbonus-${i}">+0</span>
+      <span class="check-name">${sk.label}</span>
+      <span class="check-abbr">${sk.ab.toUpperCase()}</span>`;
+    wrap.appendChild(row);
+  });
+}
+
+function cycleSkill(i,pip){
+  const cycle=['none','prof','expert','half'];
+  skillProf[i]=cycle[(cycle.indexOf(skillProf[i])+1)%cycle.length];
+  pip.classList.remove('prof','expert','half');
+  if(skillProf[i]!=='none')pip.classList.add(skillProf[i]);
+  refresh();
+}
+
+function refresh(){
+  const pb=getPB();
+  ABILITIES.forEach(ab=>{
+    const m=mod(scores[ab.key]);
+    document.getElementById('mod-'+ab.key).textContent=fmt(m);
+    const sv=saveProf[ab.key]?m+pb:m;
+    const sb=document.getElementById('sbonus-'+ab.key);if(sb)sb.textContent=fmt(sv);
+    const svl=document.getElementById('svlbonus-'+ab.key);if(svl)svl.textContent=fmt(sv);
+  });
+  SKILLS.forEach((sk,i)=>{
+    const m=mod(scores[sk.ab]);let b=m;
+    if(skillProf[i]==='prof')b=m+pb;
+    if(skillProf[i]==='expert')b=m+pb*2;
+    if(skillProf[i]==='half')b=m+Math.floor(pb/2);
+    const el=document.getElementById('skbonus-'+i);if(el)el.textContent=fmt(b);
+  });
+  const pi=SKILLS.findIndex(s=>s.label==='Perception');
+  let pp=mod(scores.wis);
+  if(skillProf[pi]==='prof')pp+=pb;
+  if(skillProf[pi]==='expert')pp+=pb*2;
+  const ppEl=document.getElementById('passivePerception');if(ppEl)ppEl.value=10+pp;
+}
+
+document.getElementById('profBonus').addEventListener('input',refresh);
+
+function buildAtkRows(){
+  const tbody=document.getElementById('atkRows');
+  [['Longsword','+5','1d8+3 slashing'],['Shortbow','+4','1d6+2 piercing'],['','',''],['','',''],['','','']].forEach(([n,a,d])=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td><input type="text" value="${n}" placeholder="${n||'—'}"></td><td><input type="text" value="${a}" style="width:36px"></td><td><input type="text" placeholder="${d}"></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function buildSpellSlots(){
+  const wrap=document.getElementById('spellSlots');
+  SLOT_COUNTS.forEach((n,i)=>{
+    const row=document.createElement('div');row.className='spell-level-row';
+    let pips='';for(let j=0;j<n;j++)pips+=`<div class="spell-pip" onclick="this.classList.toggle('used')"></div>`;
+    row.innerHTML=`<span class="spell-lvl-num">${i+1}</span><div class="spell-pips">${pips}</div>`;
+    wrap.appendChild(row);
+  });
+}
+
+function buildConditions(){
+  const wrap=document.getElementById('conditionsList');
+  CONDITIONS.forEach(c=>{
+    const item=document.createElement('div');item.className='cond-item';
+    item.innerHTML=`<div class="cond-pip"></div><span class="cond-name">${c}</span>`;
+    item.onclick=()=>item.querySelector('.cond-pip').classList.toggle('on');
+    wrap.appendChild(item);
+  });
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+buildAbilities();buildSaveList();buildSkillList();buildAtkRows();buildSpellSlots();buildConditions();refresh();
+renderInspirationIcon();
+
+/* ── Auto-fit font size for single-line inputs ── */
+const MIN_FONT = 9;   // never go below this (px)
+const BASE_FONT = 16; // default size to restore when text is short
+
+function fitInput(el) {
+  // Only applies to single-line text/number inputs, not textareas
+  if (el.tagName === 'TEXTAREA') return;
+  // Reset to base first so we measure from full size downward
+  el.style.fontSize = '';
+  const base = parseFloat(getComputedStyle(el).fontSize);
+  // If content fits, nothing to do
+  if (el.scrollWidth <= el.clientWidth) return;
+  // Shrink until it fits or we hit the minimum
+  let size = base;
+  while (el.scrollWidth > el.clientWidth && size > MIN_FONT) {
+    size -= 0.5;
+    el.style.fontSize = size + 'px';
+  }
+}
+
+function fitAllInputs() {
+  document.querySelectorAll('input[type=text], input[type=number]').forEach(fitInput);
+}
+
+// Fit on every keystroke
+document.addEventListener('input', e => {
+  if (e.target.matches('input[type=text], input[type=number]')) fitInput(e.target);
+});
+
+// Fit on window resize (column widths change)
+window.addEventListener('resize', fitAllInputs);
+
+// Fit after tab switch (hidden inputs now have layout)
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => setTimeout(fitAllInputs, 50));
+});
+
+// Initial fit pass after everything is rendered
+setTimeout(fitAllInputs, 100);
+
+/* ═══════════════════════════════════════
+   PORTRAIT SYSTEM
+   Backend: dnd-portrait-backend on Render
+   Image API: Replicate FLUX.1-schnell
+═══════════════════════════════════════ */
+
+// ── Configuration — update BACKEND_URL after deploying to Render ──────────
+const BACKEND_URL  = 'https://dnd-portrait-backend.onrender.com';
+const PURCHASE_URL = 'YOUR_PAYMENT_LINK_HERE';
+const STORAGE_KEY  = 'dnd_purchase_id';
+
+// ── Purchase ID: unique per player, persisted in localStorage ─────────────
+function getPurchaseId() {
+  let id = localStorage.getItem(STORAGE_KEY);
+  if (!id) {
+    id = 'player-' + Date.now() + '-' + Math.random().toString(36).slice(2, 9);
+    localStorage.setItem(STORAGE_KEY, id);
+  }
+  return id;
+}
+
+// ── Generation counter UI ─────────────────────────────────────────────────
+async function updateGenCounter() {
+  const counter  = document.getElementById('genCounter');
+  const btn      = document.getElementById('generateBtn');
+  const purchase = document.getElementById('purchaseBtn');
+  if (!counter) return;
+  if (BACKEND_URL === 'YOUR_RENDER_URL_HERE') {
+    counter.textContent = 'Backend not configured yet';
+    return;
+  }
+  try {
+    const res  = await fetch(`${BACKEND_URL}/gens/${getPurchaseId()}`);
+    const data = await res.json();
+    const rem  = data.remaining ?? 0;
+    if (rem <= 0) {
+      counter.textContent = 'No generations remaining';
+      counter.classList.add('low');
+      if (btn) btn.disabled = true;
+      if (purchase) purchase.classList.add('visible');
+    } else if (rem <= 5) {
+      counter.textContent = `${rem} generation${rem === 1 ? '' : 's'} remaining`;
+      counter.classList.add('low');
+      if (btn) btn.disabled = false;
+      if (purchase) purchase.classList.add('visible');
+    } else {
+      counter.textContent = `${rem} of ${data.total} generations remaining`;
+      counter.classList.remove('low');
+      if (btn) btn.disabled = false;
+      if (purchase) purchase.classList.remove('visible');
+    }
+  } catch(e) {
+    // Backend waking up or unreachable — show neutral state, keep button enabled
+    if (counter) counter.textContent = '25 generations available';
+    if (btn) btn.disabled = false;
+  }
+}
+
+function purchaseMoreGenerations() {
+  window.open(PURCHASE_URL, '_blank');
+  setTimeout(() => {
+    const code = prompt('Enter your purchase confirmation code:');
+    if (code && code.trim().length > 4) redeemCode(code.trim());
+  }, 2000);
+}
+
+async function redeemCode(code) {
+  try {
+    const res = await fetch(`${BACKEND_URL}/purchase/${getPurchaseId()}`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ secret: code })
+    });
+    if (res.ok) {
+      updateGenCounter();
+      showPortraitError('✦ 25 generations added! ✦');
+    } else {
+      showPortraitError('Invalid code — please check your purchase email.');
+    }
+  } catch(e) {
+    showPortraitError('Could not connect to server. Try again shortly.');
+  }
+}
+
+// ── Prompt builder ────────────────────────────────────────────────────────
+// D&D 5e age thresholds by race
+const RACE_AGE = {
+  'human':      { mature:18,  old:60,  ancient:80  },
+  'elf':        { mature:100, old:500, ancient:700  },
+  'high elf':   { mature:100, old:500, ancient:700  },
+  'wood elf':   { mature:100, old:500, ancient:700  },
+  'drow':       { mature:100, old:500, ancient:700  },
+  'dwarf':      { mature:50,  old:200, ancient:300  },
+  'halfling':   { mature:20,  old:100, ancient:150  },
+  'gnome':      { mature:40,  old:300, ancient:450  },
+  'half-elf':   { mature:20,  old:90,  ancient:120  },
+  'half-orc':   { mature:14,  old:50,  ancient:65   },
+  'tiefling':   { mature:18,  old:80,  ancient:100  },
+  'dragonborn': { mature:15,  old:60,  ancient:80   },
+  'orc':        { mature:12,  old:40,  ancient:60   },
+  'aasimar':    { mature:18,  old:80,  ancient:160  },
+  'genasi':     { mature:18,  old:80,  ancient:100  },
+  'tabaxi':     { mature:10,  old:60,  ancient:80   },
+  'kenku':      { mature:12,  old:50,  ancient:60   },
+  'lizardfolk': { mature:14,  old:50,  ancient:70   },
+  'triton':     { mature:15,  old:80,  ancient:100  },
+  'yuan-ti':    { mature:18,  old:80,  ancient:100  },
+};
+
+function getAgeAppearance(age, race) {
+  const r = (race || '').toLowerCase();
+  const key = Object.keys(RACE_AGE).find(k => r.includes(k)) || 'human';
+  const t = RACE_AGE[key];
+  const n = parseInt(age);
+  if (!n || isNaN(n)) return null;
+  if (n < t.mature)          return 'young youthful appearance adolescent features';
+  if (n < t.old * 0.5)      return 'young adult in their prime';
+  if (n < t.old)             return 'middle-aged some weathering and lines on face';
+  if (n < t.ancient)         return 'elderly deeply lined face grey hair aged but wise';
+  return 'ancient and venerable extremely aged face white hair distinguished elder';
+}
+
+// Explicit racial physical traits — brief, style-neutral descriptors only
+function getRacePhysicalTraits(race) {
+  const r = (race || '').toLowerCase();
+  const style = ', illustrated in classic TSR AD&D 2nd edition pen and ink watercolor style';
+  if (r.includes('gnome'))
+    return `gnome, very short stature three to four feet tall, adult face with prominent nose and large expressive eyes, realistic fantasy illustration proportions${style}`;
+  if (r.includes('dwarf'))
+    return `dwarf, short stocky four to five feet tall, broad shoulders, barrel chest, thick beard${style}`;
+  if (r.includes('halfling'))
+    return `halfling, very short three feet tall, curly hair, large hairy feet, round adult face${style}`;
+  if (r.includes('drow') || r.includes('dark elf'))
+    return `drow dark elf, slender build, long pointed ears, white hair, black skin, sharp angular features${style}`;
+  if (r.includes('wood elf'))
+    return `wood elf, slender graceful build, long pointed ears, sharp cheekbones, lean athletic frame${style}`;
+  if (r.includes('high elf') || (r.includes('elf') && !r.includes('half')))
+    return `high elf, tall willowy slender build, long pointed ears, sharp elegant features, high cheekbones${style}`;
+  if (r.includes('half-elf') || r.includes('half elf'))
+    return `half-elf, slightly pointed ears, blend of human and elven features, high cheekbones${style}`;
+  if (r.includes('half-orc') || r.includes('half orc'))
+    return `half-orc, large muscular build over six feet, slightly grey-green skin, small lower tusks, heavy brow${style}`;
+  if (r.includes('orc'))
+    return `orc, very large powerfully built, green or grey skin, large lower tusks, heavy brow ridge, massive frame${style}`;
+  if (r.includes('tiefling'))
+    return `tiefling, human-sized with small curved horns, long slender tail, solid colored eyes, infernal features${style}`;
+  if (r.includes('dragonborn'))
+    return `dragonborn, tall powerfully built reptilian humanoid covered in scales, draconic snout, clawed hands${style}`;
+  if (r.includes('tabaxi'))
+    return `tabaxi, slender feline humanoid covered in spotted or striped fur, cat-like face, whiskers, long tail${style}`;
+  if (r.includes('kenku'))
+    return `kenku, humanoid with raven-like beak, covered in black feathers, taloned feet, average height${style}`;
+  if (r.includes('lizardfolk'))
+    return `lizardfolk, reptilian humanoid covered in scales, lizard snout, clawed hands and feet, long tail${style}`;
+  return null;
+}
+
+let lastPrompt = null;
+
+function buildPortraitPrompt() {
+  const name      = (document.getElementById('charName')?.value       || '').trim();
+  const cls       = (document.getElementById('classInput')?.value     || '').trim();
+  const race      = (document.getElementById('charRace')?.value       || '').trim();
+  const background= (document.getElementById('charBackground')?.value || '').trim();
+  const alignment = (document.getElementById('alignInput')?.value     || '').trim();
+  const age       = (document.getElementById('charAge')?.value        || '').trim();
+  const gender    = (document.getElementById('charGender')?.value     || '').trim();
+  const height    = (document.getElementById('charHeight')?.value     || '').trim();
+  const build     = (document.getElementById('charBuild')?.value      || '').trim();
+  const eyeColor  = (document.getElementById('charEyeColor')?.value   || '').trim();
+  const hairColor = (document.getElementById('charHairColor')?.value  || '').trim();
+  const skinTone  = (document.getElementById('charSkinTone')?.value   || '').trim();
+  const hpCurrent = parseInt(document.getElementById('hpCurrent')?.value) || 0;
+  const hpMax     = parseInt(document.getElementById('hpMax')?.value)     || 0;
+
+  if (!cls && !race && !name) return null;
+
+  const parts = [];
+
+  // Subject line
+  let subject = 'a fantasy adventurer';
+  if (gender && race && cls)  subject = `a ${gender.toLowerCase()} ${race} ${cls}`;
+  else if (race && cls)        subject = `a ${race} ${cls}`;
+  else if (cls)                subject = `a ${cls}`;
+  else if (race)               subject = `a ${race} adventurer`;
+  if (name) subject += ` named ${name}`;
+  parts.push(`Full body fantasy illustration of ${subject}`);
+
+  // Explicit racial physical traits — overrides model assumptions
+  const raceTraits = getRacePhysicalTraits(race);
+  if (raceTraits) parts.push(raceTraits);
+
+  if (background) parts.push(`background as a ${background}`);
+
+  // Physical appearance from discrete fields
+  if (height)    parts.push(`${height} tall`);
+  if (build)     parts.push(`${build.toLowerCase()} build`);
+  if (skinTone)  parts.push(`${skinTone.toLowerCase()} skin`);
+  if (hairColor) parts.push(`${hairColor.toLowerCase()} hair`);
+  if (eyeColor)  parts.push(`${eyeColor.toLowerCase()} eyes`);
+
+  // Age mapped to visual appearance using D&D 5e racial lifespans
+  const ageDesc = getAgeAppearance(age, race);
+  if (ageDesc) parts.push(ageDesc);
+
+  // Alignment-based expression
+  if (alignment) {
+    const a = alignment.toLowerCase();
+    if      (a.includes('lawful good'))     parts.push('noble heroic expression');
+    else if (a.includes('chaotic good'))    parts.push('bold free-spirited expression');
+    else if (a.includes('neutral good'))    parts.push('kind wise expression');
+    else if (a.includes('lawful neutral'))  parts.push('stoic disciplined expression');
+    else if (a.includes('true neutral'))    parts.push('calm balanced expression');
+    else if (a.includes('chaotic neutral')) parts.push('wild unpredictable expression');
+    else if (a.includes('lawful evil'))     parts.push('calculating menacing expression');
+    else if (a.includes('neutral evil'))    parts.push('cold sinister expression');
+    else if (a.includes('chaotic evil'))    parts.push('savage ferocious expression');
+  }
+
+  // HP-based combat condition
+  if (hpMax > 0) {
+    const pct = hpCurrent / hpMax;
+    if      (pct <= 0)    parts.push('near death gravely wounded blood and grime barely standing');
+    else if (pct < 0.25)  parts.push('badly wounded torn armor bleeding grimacing in pain');
+    else if (pct < 0.5)   parts.push('visibly injured bruised battle-worn tired expression');
+    else if (pct < 0.75)  parts.push('minor cuts and scrapes determined expression combat ready');
+    else                   parts.push('healthy confident ready for battle');
+  }
+
+  // Art style — always last, always fixed
+  parts.push(
+    'full body from head to toe including feet clearly visible',
+    'standing full length pose entire body visible',
+    'Advanced Dungeons and Dragons 2nd edition official art style 1989 to 1999',
+    'TSR Inc official fantasy illustration style',
+    'realistic detailed oil painting and gouache technique',
+    'muted earthy tones with strong shadows and highlights',
+    'realistic human anatomy and proportions',
+    'gritty realistic fantasy not cartoon not anime not digital art',
+    'in the style of Jeff Easley Larry Elmore Keith Parkinson Clyde Caldwell',
+    'fully clothed in fantasy adventuring gear and armor',
+    'clothing and armor covering entire body appropriately',
+    'pure white background only, no scenery, no environment, no backdrop, no ground, no floor, no rocks, no walls, nothing behind the character except white',
+    'character isolated on solid white background',
+    'family friendly safe for all ages',
+    'masterpiece realistic fantasy illustration'
+  );
+
+  return parts.join(', ');
+}
+
+// ── Listeners — manual generate only, NO auto-generate ───────────────────
+function initPortraitListeners() {
+  // Drag & drop image onto portrait frame
+  const frame = document.querySelector('.portrait-frame');
+  if (frame) {
+    frame.addEventListener('dragover', e => { e.preventDefault(); frame.style.outline = '3px dashed var(--accent)'; });
+    frame.addEventListener('dragleave', () => { frame.style.outline = ''; });
+    frame.addEventListener('drop', e => {
+      e.preventDefault(); frame.style.outline = '';
+      const file = e.dataTransfer?.files?.[0];
+      if (file && file.type.startsWith('image/')) loadImageFile(file);
+    });
+    frame.style.cursor = 'pointer';
+  }
+
+  updateGenCounter();
+}
+
+
+function loadImageFile(file) {
+  const img         = document.getElementById('portraitImg');
+  const placeholder = document.getElementById('portraitPlaceholder');
+  const reader      = new FileReader();
+  reader.onload = e => {
+    img.src = e.target.result;
+    img.style.display = 'block';
+    if (placeholder) placeholder.style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── Generate ──────────────────────────────────────────────────────────────
+const LOADING_PHRASES = [
+  'Consulting the arcane tomes\u2026',
+  'Summoning the scribe\u2026',
+  'Communing with the ethereal plane\u2026',
+  'Painting thy likeness\u2026',
+  'Weaving the image spell\u2026',
+  'Gazing into the crystal ball\u2026',
+];
+
+async function generatePortrait(resetSeed = true) {
+  const btn         = document.getElementById('generateBtn');
+  const loader      = document.getElementById('portraitLoading');
+  const loadTxt     = document.getElementById('portraitLoadingText');
+  const img         = document.getElementById('portraitImg');
+  const placeholder = document.getElementById('portraitPlaceholder');
+
+  const prompt = buildPortraitPrompt();
+  if (!prompt) { showPortraitError('Fill in Class or Race first.'); return; }
+
+  if (BACKEND_URL === 'YOUR_RENDER_URL_HERE') {
+    showPortraitError('Backend not configured yet \u2014 see setup instructions.');
+    return;
+  }
+
+  if (btn) btn.disabled = true;
+  placeholder.style.display = 'none';
+  loader.classList.add('active');
+  loadTxt.textContent = LOADING_PHRASES[Math.floor(Math.random() * LOADING_PHRASES.length)];
+
+  // Update loading message over time so player knows it's working
+  const loadingMessages = [
+    null, // use random phrase at start
+    'Summoning the artist\u2026',
+    'Still painting\u2026 nearly there\u2026',
+    'Almost ready\u2026',
+  ];
+  let msgIndex = 1;
+  const msgTimer = setInterval(() => {
+    if (loadingMessages[msgIndex]) loadTxt.textContent = loadingMessages[msgIndex];
+    msgIndex = Math.min(msgIndex + 1, loadingMessages.length - 1);
+  }, 15000);
+
+  const cleanup = () => clearInterval(msgTimer);
+
+  try {
+    // Use a 3-minute timeout — Replicate can be slow on cold start
+    const controller = new AbortController();
+    const timeout    = setTimeout(() => controller.abort(), 180000);
+
+    const res = await fetch(`${BACKEND_URL}/generate`, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ purchaseId: getPurchaseId(), prompt }),
+      signal:  controller.signal
+    });
+    clearTimeout(timeout);
+
+    const data = await res.json();
+
+    if (res.status === 402) {
+      cleanup();
+      loader.classList.remove('active');
+      if (img.style.display === 'none' && placeholder) placeholder.style.display = '';
+      if (btn) btn.disabled = true;
+      document.getElementById('purchaseBtn')?.classList.add('visible');
+      showPortraitError('No generations remaining \u2014 purchase more to continue.');
+      updateGenCounter();
+      return;
+    }
+
+    if (!res.ok) throw new Error(data.error || `Server error ${res.status}`);
+    if (!data.imageUrl) throw new Error('No image returned from server.');
+
+    cleanup();
+    lastPrompt = prompt;
+    img.src    = data.imageUrl;
+    img.style.display = 'block';
+    placeholder.style.display = 'none';
+    loader.classList.remove('active');
+    if (btn) btn.disabled = false;
+    updateGenCounter();
+
+  } catch(err) {
+    cleanup();
+    loader.classList.remove('active');
+    if (img.style.display === 'none' && placeholder) placeholder.style.display = '';
+    if (btn) btn.disabled = false;
+    if (err.name === 'AbortError') {
+      showPortraitError('Request timed out \u2014 the server may be waking up. Please try again.');
+    } else {
+      showPortraitError(err.message || 'Generation failed \u2014 please try again.');
+    }
+  }
+}
+
+function showPortraitError(msg) {
+  const errEl = document.getElementById('portraitError');
+  if (!errEl) return;
+  errEl.textContent = msg;
+  errEl.classList.add('visible');
+  setTimeout(() => errEl.classList.remove('visible'), 7000);
+}
+
+setTimeout(initPortraitListeners, 200);
+
+
+
+
+
+
+</script>
+</body>
+</html>
