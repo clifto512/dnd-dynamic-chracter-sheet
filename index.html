@@ -1715,8 +1715,8 @@ async function updateGenCounter() {
   const btn      = document.getElementById('generateBtn');
   const purchase = document.getElementById('purchaseBtn');
   if (!counter) return;
-  if (BACKEND_URL === 'YOUR_RENDER_URL_HERE') {
-    counter.textContent = 'Backend not configured yet';
+  if (!BACKEND_URL) {
+    counter.textContent = 'Backend not configured';
     return;
   }
   try {
@@ -1990,8 +1990,8 @@ async function generatePortrait(resetSeed = true) {
   const prompt = buildPortraitPrompt();
   if (!prompt) { showPortraitError('Fill in Class or Race first.'); return; }
 
-  if (BACKEND_URL === 'YOUR_RENDER_URL_HERE') {
-    showPortraitError('Backend not configured yet \u2014 see setup instructions.');
+  if (!BACKEND_URL) {
+    showPortraitError('Backend not configured — missing URL.');
     return;
   }
 
